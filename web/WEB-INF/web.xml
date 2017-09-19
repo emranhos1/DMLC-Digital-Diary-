@@ -4,9 +4,25 @@
         <servlet-name>LoginBean</servlet-name>
         <servlet-class>userBean.LoginBean</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddOrganogramBean</servlet-name>
+        <servlet-class>userBean.AddOrganogramBean</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllOrganogramBean</servlet-name>
+        <servlet-class>userBean.AllOrganogramBean</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginBean</servlet-name>
         <url-pattern>/LoginBean</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddOrganogramBean</servlet-name>
+        <url-pattern>/AddOrganogramBean</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllOrganogramBean</servlet-name>
+        <url-pattern>/AllOrganogramBean</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,7 +1,7 @@
 <%-- 
     Document   : login
     Created on : Sep 19, 2017, 11:15:28 AM
-    Author     : PLAYBOY
+    Author     : Md. Emran Hossain
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -73,6 +73,12 @@
         <script src="allStyles/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- Core plugin JavaScript-->
         <script src="allStyles/vendor/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
+
+        <script type="text/javascript">
+            setTimeout(function () {
+                $('#message').fadeOut('fast');
+            }, 2000);
+        </script>
     </body>
 </html>
 
