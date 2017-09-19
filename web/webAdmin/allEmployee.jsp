@@ -1,5 +1,5 @@
 <%-- 
-    Document   : allOrganogram
+    Document   : allEmployee
     Created on : Sep 19, 2017, 3:37:35 PM
     Author     : Md. Emran Hossain
 --%>
@@ -235,29 +235,27 @@
                                 <thead>
                                     <tr>
                                         <th>ক্রমিক নং</th>
-                                        <th>উপাধি</th>
+                                        <th>ইউজারনেম</th>
+                                        <th>পুরো নাম</th>
+                                        <th>যোগাযোগের তথ্য</th>
                                         <th>বিভাগ</th>
-                                        <th>ঊর্ধ্বতন কর্মকর্তা</th>
-                                        <th>নির্বাচন করুন</th>
+                                        <th>উপাধি</th>
+                                        <th>অবস্থা</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
                                         <th>ক্রমিক নং</th>
-                                        <th>উপাধি</th>
+                                        <th>ইউজারনেম</th>
+                                        <th>পুরো নাম</th>
+                                        <th>যোগাযোগের তথ্য</th>
                                         <th>বিভাগ</th>
-                                        <th>ঊর্ধ্বতন কর্মকর্তা</th>
-                                        <th>নির্বাচন করুন</th>
+                                        <th>উপাধি</th>
+                                        <th>অবস্থা</th>
                                     </tr>
                                 </tfoot>
                                 <tbody id="tebleRow">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>মহাপরিচালক</td>
-                                        <td>প্রশাসন</td>
-                                        <td>না</td>
-                                        <td></td>
-                                    </tr>
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -299,8 +297,8 @@
             </div>
         </div>
 
-        <!--Organogram Edit Dialog-->
-        <div class="modal fade" id="editSpce" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!--Employee Edit Dialog-->
+<!--        <div class="modal fade" id="editSpce" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -309,20 +307,20 @@
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
-                    
+
                     <div class="modal-body card card-register mx-auto">
                         <div class="card-header">অর্গানোগ্রাম পরিবর্তন করুন</div>
                         <div class="card-body">
                             <form action="" accept-charset="UTF-8" method="" role="form" class="form-horizontal">
                                 <div class="form-group form-row">
-                                        <div class="col-md-6">
-                                            <label for="designation">উপাধি</label>
-                                            <input class="form-control" name="designation" id="designation" type="text" aria-describedby="nameHelp">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="department">বিভাগ</label>
-                                            <input class="form-control" name="department" id="department" type="text" aria-describedby="nameHelp">
-                                        </div>
+                                    <div class="col-md-6">
+                                        <label for="designation">উপাধি</label>
+                                        <input class="form-control" name="designation" id="designation" type="text" aria-describedby="nameHelp">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="department">বিভাগ</label>
+                                        <input class="form-control" name="department" id="department" type="text" aria-describedby="nameHelp">
+                                    </div>
                                 </div>
                                 <div class="form-group form-row">
                                     <div class="col-md-6">
@@ -343,39 +341,23 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <%}%>
         <script>
-            $(document).ready(function () {
+            $(window).on("load", function () {
                 $.ajax({
                     type: "POST",
-                    url: "../AllOrganogramBean",
+                    url: "../AllEmployeeBean",
                     success: function (data) {
                         $("#tebleRow").show();
-                        $("#tebleRow").append(data);
-
+                        $("#tebleRow").html(data);
                         $('#dataTables-example').DataTable({
                             responsive: true
                         });
                     }
                 });
             });
-
-            $(document).on("click", ".open-newEditDialog", function () {
-
-                var designation = $(this).data('designation');
-                var department = $(this).data('department');
-                var pdesignation = $(this).data('pdesignation');
-                console.log(designation);
-                console.log(department);
-                console.log(pdesignation);
-
-                $(".modal-body #designation").val(designation);
-                $(".modal-body #department").val(department);
-                $(".modal-body #pdesignation").val(pdesignation);
-            });
-
         </script>
     </body>
 </html>

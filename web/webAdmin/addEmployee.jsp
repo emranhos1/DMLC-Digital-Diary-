@@ -1,9 +1,11 @@
 <%-- 
-    Document   : allOrganogram
-    Created on : Sep 19, 2017, 3:37:35 PM
-    Author     : Md. Emran Hossain
+    Document   : addEmployee
+    Created on : Sep 19, 2017, 1:40:41 PM
+    Author     : Md Emran Hossain
 --%>
 
+<%@page import="dao.SelectQueryDao"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -217,49 +219,118 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="#">অর্গানোগ্রাম</a>
+                        <a href="#">কর্মচারী</a>
                     </li>
-                    <li class="breadcrumb-item active">সকল অর্গানোগ্রাম</li>
+                    <li class="breadcrumb-item active">নতুন কর্মচারী</li>
                 </ol>
 
-                <!-- Example DataTables -->
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fa fa-table"></i> সকল অর্গানোগ্রাম</div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <div id="message">
-                                <center><h3>${message}</h3></center>
-                            </div>
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>ক্রমিক নং</th>
-                                        <th>উপাধি</th>
-                                        <th>বিভাগ</th>
-                                        <th>ঊর্ধ্বতন কর্মকর্তা</th>
-                                        <th>নির্বাচন করুন</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>ক্রমিক নং</th>
-                                        <th>উপাধি</th>
-                                        <th>বিভাগ</th>
-                                        <th>ঊর্ধ্বতন কর্মকর্তা</th>
-                                        <th>নির্বাচন করুন</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody id="tebleRow">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>মহাপরিচালক</td>
-                                        <td>প্রশাসন</td>
-                                        <td>না</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                <!--add employee part-->
+                <div class="container">
+                    <div class="card card-register mx-auto mt-5">
+                        <div class="card-header">নতুন কর্মচারী যোগ করুন</div>
+
+                        <div id="message">
+                            <center><h3>${message}</h3></center>
+                        </div>
+
+                        <div class="card-body">
+                            <form action="../AddEmployeeBean" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label for="uName">ইউজারনেম</label>
+                                            <input class="form-control" name="uName" id="uName" type="text" aria-describedby="nameHelp" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="password">পাসওয়ার্ড</label>
+                                            <input class="form-control" name="password" id="password" type="password" aria-describedby="nameHelp" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label for="fullName">পুরো নাম</label>
+                                            <input class="form-control" name="fullName" id="fullName" type="text" aria-describedby="nameHelp" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="address">ঠিকানা</label>
+                                            <textarea class="form-control" name="address" id="address" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <label for="cellNo">মোবাইল নম্বর</label>
+                                            <input class="form-control" name="cellNo" id="cellNo" type="text" aria-describedby="nameHelp" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="email">ইমেইল</label>
+                                            <input type="email" id="email" name="email" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="designation">বিভাগ এবং পদবী</label>
+                                    <select class="form-control" name="designation" id="designation" required>
+                                        <option value="">নির্বাচন করুন</option>
+                                        <%
+                                            int i = 0;
+                                            ResultSet rs;
+                                            String columnName = "*";
+                                            String tableName = "employee_organogram";
+                                            rs = SelectQueryDao.selectQueryWithOutWhereClause(columnName, tableName);
+                                            rs.last();
+                                            int orgRow = rs.getRow();
+                                            int[] empOrgId = new int[orgRow];
+                                            String[] designation = new String[orgRow];
+                                            String[] department = new String[orgRow];
+                                            int[] hasParent = new int[orgRow];
+                                            int[] parentId = new int[orgRow];
+                                            rs.beforeFirst();
+                                            while (rs.next()) {
+                                                empOrgId[i] = rs.getInt("employee_organogram_id");
+                                                designation[i] = rs.getString("designation");
+                                                department[i] = rs.getString("department");
+                                                hasParent[i] = rs.getInt("has_parent");
+                                                parentId[i] = rs.getInt("parent_id");
+                                                i++;
+                                            }
+                                            for (i = 0; i < orgRow; i++) {
+                                        %>
+                                        <option value="<%=empOrgId[i]%>"><%=designation[i]%> (<%=department[i]%>)</option>
+                                        <%
+                                            }
+                                        %>
+                                    </select>
+
+                                    <input type="hidden" id="empOrgId" name="empOrgId" class="form-control" required>
+                                    <input type="hidden" id="task" name="task" value="0" class="form-control" required>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <label for="status">অবস্থা</label>
+                                    <select class="form-control" name="status" id="status" required>
+                                        <option value="">নির্বাচন করুন</option>
+                                        <option value="1">সক্রিয়</option>
+                                        <option value="0">নিষ্ক্রিয়</option>
+                                    </select>
+                                </div>
+                                    
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <button type="submit" class="btn btn-primary btn-block">দাখিল করুন</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="reset" class="btn btn-default">পুনরায় বসান</button>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -298,84 +369,22 @@
                 </div>
             </div>
         </div>
+        <%}%>     
 
-        <!--Organogram Edit Dialog-->
-        <div class="modal fade" id="editSpce" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">অর্গানোগ্রাম</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    
-                    <div class="modal-body card card-register mx-auto">
-                        <div class="card-header">অর্গানোগ্রাম পরিবর্তন করুন</div>
-                        <div class="card-body">
-                            <form action="" accept-charset="UTF-8" method="" role="form" class="form-horizontal">
-                                <div class="form-group form-row">
-                                        <div class="col-md-6">
-                                            <label for="designation">উপাধি</label>
-                                            <input class="form-control" name="designation" id="designation" type="text" aria-describedby="nameHelp">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="department">বিভাগ</label>
-                                            <input class="form-control" name="department" id="department" type="text" aria-describedby="nameHelp">
-                                        </div>
-                                </div>
-                                <div class="form-group form-row">
-                                    <div class="col-md-6">
-                                        <label for="pdesignation">ঊর্ধ্বতন পদ</label>
-                                        <input class="form-control" name="pdesignation" id="pdesignation" type="text" aria-describedby="nameHelp">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-primary btn-block" disabled>দাখিল করুন</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="reset" class="btn btn-default" disabled>পুনরায় বসান</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <script type="text/javascript">
 
-        <%}%>
-        <script>
-            $(document).ready(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "../AllOrganogramBean",
-                    success: function (data) {
-                        $("#tebleRow").show();
-                        $("#tebleRow").append(data);
+            setTimeout(function () {
+                $('#message').fadeOut('fast');
+            }, 2000);
 
-                        $('#dataTables-example').DataTable({
-                            responsive: true
-                        });
-                    }
-                });
+            $("#designation").change(function () {
+                var empOrgId = $(this).val();
+                $("#empOrgId").val(empOrgId);
             });
-
-            $(document).on("click", ".open-newEditDialog", function () {
-
-                var designation = $(this).data('designation');
-                var department = $(this).data('department');
-                var pdesignation = $(this).data('pdesignation');
-                console.log(designation);
-                console.log(department);
-                console.log(pdesignation);
-
-                $(".modal-body #designation").val(designation);
-                $(".modal-body #department").val(department);
-                $(".modal-body #pdesignation").val(pdesignation);
-            });
-
+            
+            function getrole(el) {
+                console.log(el);
+            }
         </script>
     </body>
 </html>

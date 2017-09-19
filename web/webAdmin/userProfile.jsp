@@ -1,6 +1,6 @@
 <%-- 
-    Document   : allOrganogram
-    Created on : Sep 19, 2017, 3:37:35 PM
+    Document   : userProfile
+    Created on : Sep 19, 2017, 6:23:23 PM
     Author     : Md. Emran Hossain
 --%>
 
@@ -211,60 +211,91 @@
             </div>
         </nav>
 
-        <!--Body Part-->
-        <div class="content-wrapper">
-            <div class="container-fluid">
-                <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item">
-                        <a href="#">অর্গানোগ্রাম</a>
-                    </li>
-                    <li class="breadcrumb-item active">সকল অর্গানোগ্রাম</li>
-                </ol>
-
-                <!-- Example DataTables -->
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <i class="fa fa-table"></i> সকল অর্গানোগ্রাম</div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <div id="message">
-                                <center><h3>${message}</h3></center>
+        <!--Page Body Part--> 
+            <div id="page-wrapper">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">ব্যবহারকারী প্রোফাইল</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                ব্যবহারকারীর প্রোফাইল পরিবর্তন করুনন
                             </div>
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>ক্রমিক নং</th>
-                                        <th>উপাধি</th>
-                                        <th>বিভাগ</th>
-                                        <th>ঊর্ধ্বতন কর্মকর্তা</th>
-                                        <th>নির্বাচন করুন</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>ক্রমিক নং</th>
-                                        <th>উপাধি</th>
-                                        <th>বিভাগ</th>
-                                        <th>ঊর্ধ্বতন কর্মকর্তা</th>
-                                        <th>নির্বাচন করুন</th>
-                                    </tr>
-                                </tfoot>
-                                <tbody id="tebleRow">
-                                    <tr>
-                                        <td>1</td>
-                                        <td>মহাপরিচালক</td>
-                                        <td>প্রশাসন</td>
-                                        <td>না</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                            <div id="message">
+                                <center><h3>${addOrgInfo}</h3></center>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-offset-2 col-md-6">
+                                        <form action="#" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="userName">ইউজারনেম</label>
+                                                <div class="col-md-9">
+                                                    <input id="userName" name="userName" class="form-control" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="password">নতুন পাসওয়ার্ড</label>
+                                                <div class="col-md-9">
+                                                    <input id="password" name="password" class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="fullName">পুরো নাম</label>
+                                                <div class="col-md-9">
+                                                    <input id="fullName" name="fullName" value="" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="contactInfo">ঠিকানা</label>
+                                                <div class="col-md-9">
+                                                    <textarea id="contactInfo" name="contactInfo" class="form-control"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="contactCell">যোগাযোগের নম্বর</label>
+                                                <div class="col-md-9">
+                                                    <input id="contactCell" name="contactCell" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="contactEmail">যোগাযোগের ই - মেইল</label>
+                                                <div class="col-md-9">
+                                                    <input type="email" id="contactEmail" name="contactEmail" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="designation">উপাধি</label>
+                                                <div class="col-md-9">
+                                                    <input id="designation" name="designation" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label" for="department">বিভাগ</label>
+                                                <div class="col-md-9">
+                                                    <input id="department" name="department" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-10">
+                                                    <button type="submit" class="btn btn-default">হালনাগাদ করুন</button>
+                                                    <button type="reset" class="btn btn-default">পুনরায় বসান</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
         <!--footer-->
         <footer class="sticky-footer">
@@ -346,36 +377,6 @@
         </div>
 
         <%}%>
-        <script>
-            $(document).ready(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "../AllOrganogramBean",
-                    success: function (data) {
-                        $("#tebleRow").show();
-                        $("#tebleRow").append(data);
-
-                        $('#dataTables-example').DataTable({
-                            responsive: true
-                        });
-                    }
-                });
-            });
-
-            $(document).on("click", ".open-newEditDialog", function () {
-
-                var designation = $(this).data('designation');
-                var department = $(this).data('department');
-                var pdesignation = $(this).data('pdesignation');
-                console.log(designation);
-                console.log(department);
-                console.log(pdesignation);
-
-                $(".modal-body #designation").val(designation);
-                $(".modal-body #department").val(department);
-                $(".modal-body #pdesignation").val(pdesignation);
-            });
-
-        </script>
+        
     </body>
 </html>

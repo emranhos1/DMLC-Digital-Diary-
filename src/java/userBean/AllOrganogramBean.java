@@ -58,15 +58,15 @@ public class AllOrganogramBean extends HttpServlet {
                         response.setContentType("text/plain");
                         response.getWriter().write(
                                 "<tr>"
-                                        + "<td>" + (j + 1) + "</td>"
-                                        + "<td>" + designation[j] + "</td>"
-                                        + "<td>" + department[j] + "</td>"
-                                        + "<td>" + designation[k] + "</td>"
-                                        + "<td>"
-                                        + "<button class='btn btn-success' id='editButton'>"
-                                        + "<a data-toggle='modal' data-designation= "+designation[j]+" data-department="+department[j]+" data-pdesignation="+designation[k]+" class='open-newDialog' href='#newSpec'><b>Edit</b></a>"
-                                        + "</button>"
-                                        + "</td>"
+                                + "<td>" + (j + 1) + "</td>"
+                                + "<td>" + designation[j] + "</td>"
+                                + "<td>" + department[j] + "</td>"
+                                + "<td>" + designation[k] + "</td>"
+                                + "<td>"
+                                + "<button class='btn btn-success' id='editButton'>"
+                                + "<a data-toggle='modal' data-designation= " + designation[j] + " data-department=" + department[j] + " data-pdesignation=" + designation[k] + " class='open-newEditDialog' href='#editSpce'><b>Edit</b></a>"
+                                + "</button>"
+                                + "</td>"
                                 + "</tr>");
                     }
                 }

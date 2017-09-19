@@ -12,6 +12,14 @@
         <servlet-name>AllOrganogramBean</servlet-name>
         <servlet-class>userBean.AllOrganogramBean</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddEmployeeBean</servlet-name>
+        <servlet-class>userBean.AddEmployeeBean</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllEmployeeBean</servlet-name>
+        <servlet-class>userBean.AllEmployeeBean</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginBean</servlet-name>
         <url-pattern>/LoginBean</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>AllOrganogramBean</servlet-name>
         <url-pattern>/AllOrganogramBean</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddEmployeeBean</servlet-name>
+        <url-pattern>/AddEmployeeBean</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllEmployeeBean</servlet-name>
+        <url-pattern>/AllEmployeeBean</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
