@@ -36,6 +36,38 @@
         <servlet-name>AllRunningDocument</servlet-name>
         <servlet-class>userBean.AllRunningDocument</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AllEndDocument</servlet-name>
+        <servlet-class>userBean.AllEndDocument</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllNewWorkEmp</servlet-name>
+        <servlet-class>userBean.AllNewWorkEmp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertComment</servlet-name>
+        <servlet-class>userBean.InsertComment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllComment</servlet-name>
+        <servlet-class>userBean.AllComment</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllEmpUnderEmp</servlet-name>
+        <servlet-class>userBean.AllEmpUnderEmp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateRecDoc</servlet-name>
+        <servlet-class>userBean.UpdateRecDoc</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddRecDocForEmp</servlet-name>
+        <servlet-class>userBean.AddRecDocForEmp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReturnErrorDocument</servlet-name>
+        <servlet-class>userBean.ReturnErrorDocument</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginBean</servlet-name>
         <url-pattern>/LoginBean</url-pattern>
@@ -71,6 +103,38 @@
     <servlet-mapping>
         <servlet-name>AllRunningDocument</servlet-name>
         <url-pattern>/AllRunningDocument</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllEndDocument</servlet-name>
+        <url-pattern>/AllEndDocument</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllNewWorkEmp</servlet-name>
+        <url-pattern>/AllNewWorkEmp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertComment</servlet-name>
+        <url-pattern>/InsertComment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllComment</servlet-name>
+        <url-pattern>/AllComment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllEmpUnderEmp</servlet-name>
+        <url-pattern>/AllEmpUnderEmp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateRecDoc</servlet-name>
+        <url-pattern>/UpdateRecDoc</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddRecDocForEmp</servlet-name>
+        <url-pattern>/AddRecDocForEmp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReturnErrorDocument</servlet-name>
+        <url-pattern>/ReturnErrorDocument</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

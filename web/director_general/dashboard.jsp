@@ -69,7 +69,7 @@
                                 <a href="allNewDocument.jsp"><i class="fa fa-newspaper-o fa-fw"></i>নতুন চিঠি সমূহ</a>
                             </li>
                             <li>
-                                <a href="runningDocument.jsp"><i class="fa fa-newspaper-o fa-fw"></i>ফেরত চিঠি সমূহ</a>
+                                <a href="runningDocument.jsp"><i class="fa fa-newspaper-o fa-fw"></i>চলমান চিঠি সমূহ</a>
                             </li>
                             <li>
                                 <a href="endDocument.jsp"><i class="fa fa-newspaper-o fa-fw"></i>নিস্পত্তিক্রিত চিঠি সমূহ</a>
