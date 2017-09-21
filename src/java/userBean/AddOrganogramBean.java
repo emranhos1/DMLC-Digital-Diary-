@@ -43,7 +43,7 @@ public class AddOrganogramBean extends HttpServlet {
                 request.getSession().setAttribute("message", addOrgSuccess);
                 response.sendRedirect("webAdmin/addOrganogram.jsp");
             } else {
-                String addOrgError = "<p class='alert-info'>অর্গানোগ্রাম নিবন্ধিত হয়নি</p>";
+                String addOrgError = "<p class='alert-danger'>অর্গানোগ্রাম নিবন্ধিত হয়নি</p>";
                 request.getSession().setAttribute("message", addOrgError);
                 response.sendRedirect("webAdmin/addOrganogram.jsp");
             }

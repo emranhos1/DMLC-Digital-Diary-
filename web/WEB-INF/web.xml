@@ -20,6 +20,22 @@
         <servlet-name>AllEmployeeBean</servlet-name>
         <servlet-class>userBean.AllEmployeeBean</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddDocumentBean</servlet-name>
+        <servlet-class>userBean.AddDocumentBean</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllNewDocument</servlet-name>
+        <servlet-class>userBean.AllNewDocument</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddReceivesDocument</servlet-name>
+        <servlet-class>userBean.AddReceivesDocument</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllRunningDocument</servlet-name>
+        <servlet-class>userBean.AllRunningDocument</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginBean</servlet-name>
         <url-pattern>/LoginBean</url-pattern>
@@ -39,6 +55,22 @@
     <servlet-mapping>
         <servlet-name>AllEmployeeBean</servlet-name>
         <url-pattern>/AllEmployeeBean</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddDocumentBean</servlet-name>
+        <url-pattern>/AddDocumentBean</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllNewDocument</servlet-name>
+        <url-pattern>/AllNewDocument</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddReceivesDocument</servlet-name>
+        <url-pattern>/AddReceivesDocument</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllRunningDocument</servlet-name>
+        <url-pattern>/AllRunningDocument</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

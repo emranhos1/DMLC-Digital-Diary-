@@ -56,7 +56,7 @@ public class AddEmployeeBean extends HttpServlet {
             addEmployee = InsertQueryDao.insertQueryWithOutWhereClause(tableName, columnName, values);
             
             if(!addEmployee){
-                String addEmpError = "<p class='alert-info'>নতুন কর্মচারী তালিকায় অন্তর্ভুক্ত করা হয়নি</p>";
+                String addEmpError = "<p class='alert-danger'>নতুন কর্মচারী তালিকায় অন্তর্ভুক্ত করা হয়নি</p>";
                 request.getSession().setAttribute("message", addEmpError);
                 response.sendRedirect("webAdmin/addEmployee.jsp");
             } else{

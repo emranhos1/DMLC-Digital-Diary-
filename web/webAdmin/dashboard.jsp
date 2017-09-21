@@ -23,10 +23,28 @@
         <link href="../allStyles/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
         <!-- Custom styles for this template-->
         <link href="../allStyles/css/sb-admin.min.css" rel="stylesheet" type="text/css"/>
+        <!-- Bootstrap core JavaScript-->
+        <script src="../allStyles/vendor/jquery/jquery.min.js" type="text/javascript"></script>
+        <script src="../allStyles/vendor/popper/popper.min.js" type="text/javascript"></script>
+        <script src="../allStyles/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="../allStyles/vendor/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
+        <!-- Page level plugin JavaScript-->
+        <script src="../allStyles/vendor/chart.js/Chart.min.js" type="text/javascript"></script>
+        <script src="../allStyles/vendor/datatables/jquery.dataTables.js" type="text/javascript"></script>
+        <script src="../allStyles/vendor/datatables/dataTables.bootstrap4.js" type="text/javascript"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="../allStyles/js/sb-admin.min.js" type="text/javascript"></script>
+        <!-- Custom scripts for this page-->
+        <script src="../allStyles/js/sb-admin-datatables.min.js" type="text/javascript"></script>
+        <script src="../allStyles/js/sb-admin-charts.min.js" type="text/javascript"></script>
     </head>
 
     <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-
+        <%
+            if ((session.getAttribute("idUser") == null) || (session.getAttribute("idUser") == "")) {
+                response.sendRedirect("../login.jsp");
+            } else {%>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
             <a class="navbar-brand" href="#">Web Admin</a>
@@ -281,7 +299,7 @@
                     </div>
                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-lg-8">
                         <!-- Example Bar Chart Card-->
@@ -561,7 +579,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Example DataTables Card-->
                 <div class="card mb-3">
                     <div class="card-header">
@@ -1055,7 +1073,7 @@
             </div>
             <!-- /.container-fluid-->
             <!-- /.content-wrapper-->
-            
+
             <!--footer-->
             <footer class="sticky-footer">
                 <div class="container">
@@ -1064,12 +1082,12 @@
                     </div>
                 </div>
             </footer>
-            
+
             <!-- Scroll to Top Button-->
             <a class="scroll-to-top rounded" href="#page-top">
                 <i class="fa fa-angle-up"></i>
             </a>
-            
+
             <!-- Logout Modal-->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -1088,23 +1106,8 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Bootstrap core JavaScript-->
-            <script src="../allStyles/vendor/jquery/jquery.min.js" type="text/javascript"></script>
-            <script src="../allStyles/vendor/popper/popper.min.js" type="text/javascript"></script>
-            <script src="../allStyles/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-            <!-- Core plugin JavaScript-->
-            <script src="../allStyles/vendor/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
-            <!-- Page level plugin JavaScript-->
-            <script src="../allStyles/vendor/chart.js/Chart.min.js" type="text/javascript"></script>
-            <script src="../allStyles/vendor/datatables/jquery.dataTables.js" type="text/javascript"></script>
-            <script src="../allStyles/vendor/datatables/dataTables.bootstrap4.js" type="text/javascript"></script>
-            <!-- Custom scripts for all pages-->
-            <script src="../allStyles/js/sb-admin.min.js" type="text/javascript"></script>
-            <!-- Custom scripts for this page-->
-            <script src="../allStyles/js/sb-admin-datatables.min.js" type="text/javascript"></script>
-            <script src="../allStyles/js/sb-admin-charts.min.js" type="text/javascript"></script>
         </div>
+        <%}%>  
     </body>
 
 </html>
