@@ -246,208 +246,225 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
 
-                <!--footer-->
-                <footer class="sticky-footer">
-                    <div class="container">
-                        <div class="text-center">
-                            <small>Copyright © Your Website 2017</small>
+            <!--footer-->
+            <footer class="sticky-footer">
+                <div class="container">
+                    <div class="text-center">
+                        <small>Copyright © Your Website 2017</small>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fa fa-angle-up"></i>
+            </a>
+
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">আপনি কি নিশ্চিত?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">আপনি যদি আপনার বর্তমান অধিবেশন শেষ করার জন্য প্রস্তুত হন তবে নীচের "প্রস্থান" নির্বাচন করুন।</div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">বাতিল</button>
+                            <a class="btn btn-primary" href="../logout.jsp">প্রস্থান</a>
                         </div>
                     </div>
-                </footer>
+                </div>
+            </div>
 
-                <!-- Scroll to Top Button-->
-                <a class="scroll-to-top rounded" href="#page-top">
-                    <i class="fa fa-angle-up"></i>
-                </a>
-
-                <!-- Logout Modal-->
-                <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">আপনি কি নিশ্চিত?</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">আপনি যদি আপনার বর্তমান অধিবেশন শেষ করার জন্য প্রস্তুত হন তবে নীচের "প্রস্থান" নির্বাচন করুন।</div>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">বাতিল</button>
-                                <a class="btn btn-primary" href="../logout.jsp">প্রস্থান</a>
+            <!--Specification Dialog for comment-->
+            <div class="modal fade" id="addSpecComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">মন্তব্য</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body card card-register mx-auto">
+                            <div class="card-header">মন্তব্য করুন</div>
+                            <div class="card-body">
+                                <form action="../InsertComment" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <label for="scanFile" class="control-label">স্ক্যান ফাইল</label>
+                                        <img id="scanFile" alt="এই ফাইলটি লোড করা যাচ্ছেনা" height="auto" width="100%"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="control-label">আপনার মন্তব্য দিন</label>
+                                        <div class="control-label">
+                                            <textarea id="comment" name="comment" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+                                    <input  type="hidden" id="documentId" name="documentId" class="form-control" value=""/>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-primary btn-block">মন্তব্য দাখিল করুন</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="reset" class="btn btn-default">পুনরায় বসান</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!--Specification Dialog for comment-->
-                <div class="modal fade" id="addSpecComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">মন্তব্য</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body card card-register mx-auto">
-                                <div class="card-header">মন্তব্য করুন</div>
-                                <div class="card-body">
-                                    <form action="../InsertComment" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
-                                        <div class="form-group">
-                                            <label for="scanFile" class="control-label">স্ক্যান ফাইল</label>
-                                            <img id="scanFile" alt="এই ফাইলটি লোড করা যাচ্ছেনা" height="auto" width="100%"/>
+            <!--Specification Dialog-->
+            <div class="modal fade" id="addSpec" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">পরবর্তী ধাপ</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body card card-register mx-auto">
+                            <div class="card-header">পাঠান/নিষ্পন্ন করুণ</div>
+                            <div class="card-body">
+                                <form action="../AddRecDocForEmp" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <img id="scanFile" alt="এই ফাইলটি লোড করা যাচ্ছেনা" height="100%" width="100%"/>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="comment" class="control-label">আপনার মন্তব্য দিন</label>
-                                            <div class="control-label">
-                                                <textarea id="comment" name="comment" class="form-control" required></textarea>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="subjectOfLetter" class="col-sm-4 control-label">পত্রের বিষয়</label>
+                                        <div class="">
+                                            <input  type="text" id="subjectOfLetter" name="subjectOfLetter" class="form-control" value="" readonly/>
                                         </div>
-                                        <input  type="hidden" id="documentId" name="documentId" class="form-control" value=""/>
-                                        <div class="form-row">
-                                            <div class="col-md-6">
-                                                <button type="submit" class="btn btn-primary btn-block">মন্তব্য দাখিল করুন</button>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <button type="reset" class="btn btn-default">পুনরায় বসান</button>
-                                            </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="depOfOrigin" class="col-sm-4 control-label">মূল বিভাগ়</label>
+                                        <div class="">
+                                            <input  type="text" id="depOfOrigin" name="depOfOrigin" class="form-control" value="" readonly/>
                                         </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="endDate" class="control-label">নিস্পত্তির সম্ভাব্য তারিখ</label>
+                                        <div class="">
+                                            <input  type="text" id="endDate" name="endDate" class="form-control" value="" readonly/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="shortDesc" class="col-sm-4 control-label">ছোট বিবরণ়</label>
+                                        <div class="">
+                                            <input  type="text" id="shortDesc" name="shortDesc" class="form-control" value="" readonly/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example-spce">
+                                            <thead>
+                                                <tr>
+                                                    <th>ক্রমিক নং</th>
+                                                    <th>যারা মন্তব্য করেছেন</th>
+                                                    <th>মন্তব্য</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="spceTebleRow">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="lastStatus" class="control-label">শেষ অবস্থা</label>
+                                        <div class="">
+                                            <select class="form-control" name="lastStatus" id="lastStatus" required>
+                                                <option value="">নির্বাচন করুন</option>
+                                                <option value="2">চলমান থাকবে</option>
+                                                <option value="3">নিষ্পন্ন করা হল</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="goingTo" class="control-label">যাকে পাঠাতে চান</label>
+                                        <div class="">
+                                            <select class="form-control" name="goingTo" id="goingTo" required>
+                                                <option value="">কর্মচারী নির্বাচন করুন</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="comment" class="col-sm-4 control-label">আপনার মন্তব্য</label>
+                                        <textarea id="comment" name="comment" class="form-control" value="" required></textarea>
+                                    </div>
+                                    <input  type="hidden" id="documentId" name="documentId" class="form-control" required/>
+                                    <input  type="hidden" id="letterId" name="letterId" class="form-control" required/>
+                                    <input  type="hidden" id="forwardingId" name="forwardingId" class="form-control" required/>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-primary btn-block">মন্তব্য দাখিল করুন</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button type="reset" class="btn btn-default">পুনরায় বসান</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!--Specification Dialog-->
-                <div class="modal fade" id="addSpec" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">পরবর্তী ধাপ</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body card card-register mx-auto">
-                                <div class="card-header">পাঠান/নিষ্পন্ন করুণ</div>
-                                <div class="card-body">
-                                    <form action="../AddRecDocForEmp" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <img id="scanFile" alt="এই ফাইলটি লোড করা যাচ্ছেনা" height="100%" width="100%"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="subjectOfLetter" class="col-sm-4 control-label">পত্রের বিষয়</label>
-                                            <div class="">
-                                                <input  type="text" id="subjectOfLetter" name="subjectOfLetter" class="form-control" value="" readonly/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="depOfOrigin" class="col-sm-4 control-label">মূল বিভাগ়</label>
-                                            <div class="">
-                                                <input  type="text" id="depOfOrigin" name="depOfOrigin" class="form-control" value="" readonly/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="endDate" class="control-label">নিস্পত্তির সম্ভাব্য তারিখ</label>
-                                            <div class="">
-                                                <input  type="text" id="endDate" name="endDate" class="form-control" value="" readonly/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="shortDesc" class="col-sm-4 control-label">ছোট বিবরণ়</label>
-                                            <div class="">
-                                                <input  type="text" id="shortDesc" name="shortDesc" class="form-control" value="" readonly/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example-spce">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ক্রমিক নং</th>
-                                                        <th>যারা মন্তব্য করেছেন</th>
-                                                        <th>মন্তব্য</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="spceTebleRow">
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="comment" class="control-label">যাকে পাঠাতে চান</label>
-                                            <div class="">
-                                                <select class="form-control" name="goingTo" id="goingTo" required>
-                                                    <option value="">কর্মচারী নির্বাচন করুন</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <input  type="hidden" id="documentId" name="documentId" class="form-control" required/>
-                                        <input  type="hidden" id="letterId" name="letterId" class="form-control" required/>
-                                        <input  type="hidden" id="forwardingId" name="forwardingId" class="form-control" required/>
-                                        <div class="form-row">
-                                            <div class="col-md-6">
-                                                <button type="submit" class="btn btn-primary btn-block">মন্তব্য দাখিল করুন</button>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <button type="reset" class="btn btn-default">পুনরায় বসান</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+            <!--Specification Dialog for return running document-->
+            <div class="modal fade" id="addSpecReturn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ফেরত পাঠান</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
                         </div>
-                    </div>
-                </div>
+                        <div class="modal-body card card-register mx-auto">
+                            <div class="card-header">চিঠিটি ফেরত পাঠান</div>
+                            <div class="card-body">
+                                <form action="../ReturnErrorDocument" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <img id="scanFile" alt="এই ফাইলটি লোড করা যাচ্ছেনা" height="100%" width="100%"/>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <center><p class="bg-info">[বিঃ দ্রঃ নথিটি আপনার ঊর্ধ্বতন কর্মকর্তার নিকট পাঠানো হবে]</p></center>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="comment" class="control-label">আপনার মন্তব্য দিন</label>
+                                        <div class="col-sm-12">
+                                            <textarea id="comment" name="comment" class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+                                    <input  type="hidden" id="forwardedToEmployeeUsername" name="forwardedToEmployeeUsername" class="form-control" value="" readonly/>
+                                    <input  type="hidden" id="forwardedToEmployeeId" name="forwardedToEmployeeId" class="form-control" value="" readonly/>
+                                    <input  type="hidden" id="acknowledgedByEmployeeId" name="acknowledgedByEmployeeId" class="form-control" value="" readonly/>
+                                    <input  type="hidden" id="documentId" name="documentId" class="form-control" value="" readonly/>
+                                    <input  type="hidden" id="letterId" name="letterId" class="form-control" value="" readonly/>
+                                    <input  type="hidden" id="forwardingId" name="forwardingId" class="form-control" value="" readonly/>
 
-                <!--Specification Dialog for return running document-->
-                <div class="modal fade" id="addSpecReturn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">ফেরত পাঠান</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <div class="modal-body card card-register mx-auto">
-                                <div class="card-header">চিঠিটি ফেরত পাঠান</div>
-                                <div class="card-body">
-                                    <form action="../ReturnErrorDocument" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                <img id="scanFile" alt="এই ফাইলটি লোড করা যাচ্ছেনা" height="100%" width="100%"/>
-                                            </div>
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <button type="submit" class="btn btn-primary btn-block">চিঠিটি ফেরত পাঠান</button>
                                         </div>
-                                        <div>
-                                            <center><p class="bg-info">[বিঃ দ্রঃ নথিটি আপনার ঊর্ধ্বতন কর্মকর্তার নিকট পাঠানো হবে]</p></center>
+                                        <div class="col-md-6">
+                                            <button type="reset" class="btn btn-default">পুনরায় বসান</button>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="comment" class="control-label">আপনার মন্তব্য দিন</label>
-                                            <div class="col-sm-12">
-                                                <textarea id="comment" name="comment" class="form-control" required></textarea>
-                                            </div>
-                                        </div>
-                                        <input  type="hidden" id="forwardedToEmployeeUsername" name="forwardedToEmployeeUsername" class="form-control" value="" readonly/>
-                                        <input  type="hidden" id="forwardedToEmployeeId" name="forwardedToEmployeeId" class="form-control" value="" readonly/>
-                                        <input  type="hidden" id="acknowledgedByEmployeeId" name="acknowledgedByEmployeeId" class="form-control" value="" readonly/>
-                                        <input  type="hidden" id="documentId" name="documentId" class="form-control" value="" readonly/>
-                                        <input  type="hidden" id="letterId" name="letterId" class="form-control" value="" readonly/>
-                                        <input  type="hidden" id="forwardingId" name="forwardingId" class="form-control" value="" readonly/>
-
-                                        <div class="form-row">
-                                            <div class="col-md-6">
-                                                <button type="submit" class="btn btn-primary btn-block">চিঠিটি ফেরত পাঠান</button>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <button type="reset" class="btn btn-default">পুনরায় বসান</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

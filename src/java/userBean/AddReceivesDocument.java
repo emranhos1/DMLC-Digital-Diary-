@@ -36,6 +36,7 @@ public class AddReceivesDocument extends HttpServlet {
     private boolean insertCommentTable;
     private String endDate;
     private String recivedStatus;
+    private String currentDate;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -78,6 +79,7 @@ public class AddReceivesDocument extends HttpServlet {
             }
 
             forwardingDateTime = dateFormate.format(date);
+            currentDate = dateFormate.format(date);
 
             if (status == 2) {
                 columnNameANDcolumnValue = " current_status = '" + status + "', end_date ='" + endDate + "', priority = '" + priority + "' ";
@@ -125,7 +127,7 @@ public class AddReceivesDocument extends HttpServlet {
                     response.sendRedirect("director_general/allNewDocument.jsp");
                 }
             } else {
-                columnNameANDcolumnValue = " current_status = '" + status + "', end_date ='" + endDate + "' ";
+                columnNameANDcolumnValue = " current_status = '" + status + "', end_date ='" + currentDate + "' ";
                 tableName = " letter ";
                 whereCondition = " letter_id = '" + letterId + "'";
                 updateLetterTable = UpdateQueryDao.updateQueryWithWhereClause(tableName, columnNameANDcolumnValue, whereCondition);
