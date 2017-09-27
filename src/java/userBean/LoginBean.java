@@ -22,12 +22,10 @@ public class LoginBean extends HttpServlet {
     private String whereCondition;
     private ResultSet rs;
     private int userId;
-    private String email;
-    private String password;
-    private int emplOrgId;
     private String designation;
     private String department;
     private String role;
+    private String employeeId;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,19 +33,18 @@ public class LoginBean extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            userName = new String(request.getParameter("username").getBytes("ISO-8859-1"), "UTF-8");
+            employeeId = new String(request.getParameter("username").getBytes("ISO-8859-1"), "UTF-8");
             userPass = new String(request.getParameter("password").getBytes("ISO-8859-1"), "UTF-8");
 
+            System.out.println(userName);
+            System.out.println(userPass);
             columnName = " * ";
             tableName = " employee_emp_org ";
-            whereCondition = " user_name = '" + userName + "' and password = '" + userPass + "' ";;
+            whereCondition = " employee_id = '" + employeeId + "' and password = '" + userPass + "' ";;
 
             rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
             if (rs.next()) {
                 userId = rs.getInt("employee_id");
-                email = rs.getString("contact_email");
-                password = rs.getString("password");
-                emplOrgId = rs.getInt("employee_organogram_id");
                 designation = rs.getString("designation");
                 department = rs.getString("department");
 

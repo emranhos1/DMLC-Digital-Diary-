@@ -4,6 +4,8 @@
     Author     : Md. Emran Hossain
 --%>
 
+<%@page import="dao.SelectQueryDao"%>
+<%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -46,9 +48,43 @@
                     <form role="form" role="form" action="LoginBean" method="post" class="form-horizontal">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Username" name="username" type="text" autofocus required>
+                                <label for="username" class="control-label">ইউজারনেম</label>
+                                <select class="form-control" name="username" id="username" required>
+                                    <option value="">কর্মচারী নির্বাচন করুন</option>
+                                    <%
+                                        int i = 0;
+                                        ResultSet rs;
+                                        String columnName = " * ";
+                                        String tableName = " employee_emp_org ";
+                                        
+                                        rs = SelectQueryDao.selectQueryWithOutWhereClause(columnName, tableName);
+                                        rs.last();
+                                        int orgRow = rs.getRow();
+                                        int[] employeeId = new int[orgRow];
+                                        int[] empOrgId = new int[orgRow];
+                                        String[] uName = new String[orgRow];
+                                        String[] designation = new String[orgRow];
+                                        String[] department = new String[orgRow];
+                                        rs.beforeFirst();
+                                        while (rs.next()) {
+                                            employeeId[i] = rs.getInt("employee_id");
+                                            uName[i] = rs.getString("user_name");
+                                            empOrgId[i] = rs.getInt("employee_organogram_id");
+                                            designation[i] = rs.getString("designation");
+                                            department[i] = rs.getString("department");
+                                            i++;
+                                        }
+                                        for (i = 0; i < orgRow; i++) {
+                                    %>
+                                    <option value="<%=employeeId[i]%>"><%=designation[i]%> (<%=department[i]%>)</option>
+                                    <%
+                                        }
+                                    %>
+                                </select>
                             </div>
+                                
                             <div class="form-group">
+                                <label for="password" class="control-label">পাসওয়ার্ড</label>
                                 <input class="form-control" placeholder="Password" name="password" type="password" value="" required>
                             </div>
                             <div class="checkbox">

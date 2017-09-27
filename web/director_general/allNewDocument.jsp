@@ -32,14 +32,14 @@
         <!-- Core plugin JavaScript-->
         <script src="../allStyles/vendor/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
         <!-- Page level plugin JavaScript-->
-        <script src="../allStyles/vendor/chart.js/Chart.min.js" type="text/javascript"></script>
+
         <script src="../allStyles/vendor/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="../allStyles/vendor/datatables/dataTables.bootstrap4.js" type="text/javascript"></script>
         <!-- Custom scripts for all pages-->
         <script src="../allStyles/js/sb-admin.min.js" type="text/javascript"></script>
         <!-- Custom scripts for this page-->
         <script src="../allStyles/js/sb-admin-datatables.min.js" type="text/javascript"></script>
-        <script src="../allStyles/js/sb-admin-charts.min.js" type="text/javascript"></script>
+
     </head>
 
     <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -248,7 +248,7 @@
                             <th>অগ্রাধিকার</th>
                         </tr>
                     </tfoot>
-                    <tbody id="tebleRow">
+                    <tbody id="tableRow">
 
                     </tbody>
                 </table>
@@ -319,17 +319,6 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="priority" class="col-sm-4 control-label">অগ্রাধিকার</label>
-                                        <div>
-                                            <select class="form-control" name="priority" id="priority" required>
-                                                <option value="">নির্বাচন করুন</option>
-                                                <option value="1">জরুরী</option>
-                                                <option value="2">সাধারণ</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
                                         <label for="status" class="col-sm-4 control-label">সর্বশেষ অবস্থা</label>
                                         <div>
                                             <select class="form-control" name="status" id="status" required>
@@ -340,9 +329,18 @@
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div class="form-group pg" style="display: none">
+                                        <label for="priority" class="col-sm-4 control-label">অগ্রাধিকার</label>
+                                        <div>
+                                            <select class="form-control req-active" name="priority" id="priority">
+                                                <option value="">নির্বাচন করুন</option>
+                                                <option value="1">জরুরী</option>
+                                                <option value="2">সাধারণ</option>
+                                            </select>
+                                        </div>
+                                        <br/>
                                         <label for="goingTo" class="control-label">যাকে পাঠাতে চান</label>
-                                        <select class="form-control" name="goingTo" id="goingTo" required>
+                                        <select class="form-control req-active" name="goingTo" id="goingTo">
                                             <option value="">কর্মচারী নির্বাচন করুন</option>
                                             <%
                                                 int i = 0;
@@ -350,7 +348,7 @@
                                                 int user_Id = Integer.parseInt(session.getAttribute("idUser").toString());
                                                 String columnName = " * ";
                                                 String tableName = " employee_emp_org ";
-                                                String whereCondition = " employee_id not in('"+user_Id+"') and designation not in ('webadmin','frontdesk')";
+                                                String whereCondition = " employee_id not in('" + user_Id + "') and designation not in ('webadmin','frontdesk')";
                                                 rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
                                                 rs.last();
                                                 int orgRow = rs.getRow();
@@ -379,13 +377,12 @@
                                                 }
                                             %>
                                         </select>
-                                        <input type="hidden" id="letterId" name="letterId" class="form-control" required>
-                                    </div>
-
-                                    <div class="form-group">
+                                        <br/>
                                         <label for="endDate">নিস্পত্তিত সম্ভাব্য তারিখ</label>
-                                        <input type="date" id="endDate" name="endDate" class="form-control" required>
+                                        <input type="date" id="endDate" name="endDate" class="form-control req-active">
                                     </div>
+                                    <input type="hidden" id="letterId" name="letterId" class="form-control" required>
+
                                     <div class="form-row">
                                         <div class="col-md-6">
                                             <button type="submit" class="btn btn-primary btn-block">দাখিল করুন</button>
@@ -412,15 +409,30 @@
                     type: "POST",
                     url: "../AllNewDocument",
                     success: function (data) {
-                        $("#tebleRow").show();
-                        $("#tebleRow").html(data);
+                        $("#tableRow").show();
+                        $("#tableRow").html(data);
                         $('#dataTables-example').DataTable({
                             responsive: true
                         });
                     }
                 });
             });
-            
+
+            $("#status").change(function () {
+                console.log("here");
+                //var optionValue = $(this).attr("value"); 
+                var optionValue = $('#status').val()
+                console.log("value:" + optionValue);
+                if (optionValue == 2) {
+                    $(".pg").show();
+                    $('.req-active').attr('required', 'true');
+                } else if (optionValue == 3) {
+                    $(".pg").hide();
+                    $('.req-active').removeAttr('required');
+                } else {
+                }
+            });
+
             $(document).on("click", ".open-spceLetterDialog", function () {
 
                 var letterId = $(this).data('letterid');
@@ -442,6 +454,10 @@
                 $(".modal-body #documentId").val(documentId);
                 $(".modal-body #shortDesc").val(shortDesc);
                 $(".modal-body #scanFile").attr('src', '../Uploaded_file/' + scanFile);
+            });
+
+            $(document).ready(function () {
+                $(".col-sm-12").css("overflow-x", "scroll");
             });
         </script>
     </body>

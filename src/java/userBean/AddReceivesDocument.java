@@ -51,8 +51,8 @@ public class AddReceivesDocument extends HttpServlet {
             userId = session.getAttribute("idUser").toString();
 
             comment = new String(request.getParameter("comment").getBytes("ISO-8859-1"), "UTF-8");
-            priority = new String(request.getParameter("priority").getBytes("ISO-8859-1"), "UTF-8");
             status = Integer.parseInt(request.getParameter("status"));
+            priority = new String(request.getParameter("priority").getBytes("ISO-8859-1"), "UTF-8");
             goingToUserId = new String(request.getParameter("goingTo").getBytes("ISO-8859-1"), "UTF-8");
             letterId = new String(request.getParameter("letterId").getBytes("ISO-8859-1"), "UTF-8");
             endDate = new String(request.getParameter("endDate").getBytes("ISO-8859-1"), "UTF-8");
