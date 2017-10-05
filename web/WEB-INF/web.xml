@@ -68,6 +68,14 @@
         <servlet-name>ReturnErrorDocument</servlet-name>
         <servlet-class>userBean.ReturnErrorDocument</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserInfo</servlet-name>
+        <servlet-class>userBean.UserInfo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateInfo</servlet-name>
+        <servlet-class>userBean.UpdateInfo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginBean</servlet-name>
         <url-pattern>/LoginBean</url-pattern>
@@ -135,6 +143,14 @@
     <servlet-mapping>
         <servlet-name>ReturnErrorDocument</servlet-name>
         <url-pattern>/ReturnErrorDocument</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserInfo</servlet-name>
+        <url-pattern>/UserInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateInfo</servlet-name>
+        <url-pattern>/UpdateInfo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

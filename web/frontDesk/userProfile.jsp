@@ -45,7 +45,7 @@
             } else {%>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-            <a class="navbar-brand" href="#">Web Admin</a>
+            <a class="navbar-brand" href="#">Front Desk</a>
 
             <!--Navigation Side bar-->
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -56,36 +56,14 @@
                             <span class="nav-link-text">ড্যাশবোর্ড</span>
                         </a>
                     </li>
-
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseOrganogram" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-file"></i>
-                            <span class="nav-link-text">অর্গানোগ্রাম</span>
+                    
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+                        <a class="nav-link" href="addDocument.jsp">
+                            <i class="fa fa-fw fa-dashboard"></i>
+                            <span class="nav-link-text">চিঠি যোগ করুন</span>
                         </a>
-                        <ul class="sidenav-second-level collapse" id="collapseOrganogram">
-                            <li>
-                                <a href="addOrganogram.jsp"><i class="fa fa-users fa-fw"></i> নতুন অর্গানোগ্রাম</a>
-                            </li>
-                            <li>
-                                <a href="allOrganogram.jsp"><i class="fa fa-users fa-fw"></i> সকল অর্গানোগ্রাম</a>
-                            </li>                            
-                        </ul>
                     </li>
-                    <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEmployee" data-parent="#exampleAccordion">
-                            <i class="fa fa-fw fa-sitemap"></i>
-                            <span class="nav-link-text">কর্মচারী</span>
-                        </a>
-                        <ul class="sidenav-second-level collapse" id="collapseEmployee">
-                            <li>
-                                <a href="addEmployee.jsp"><i class="fa fa-user fa-fw"></i> নতুন কর্মচারী</a>
-                            </li>
-                            <li>
-                                <a href="allEmployee.jsp"><i class="fa fa-user fa-fw"></i> সকল কর্মচারী</a>
-                            </li>
-                        </ul>
-                    </li>
-
+                    
                     <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseAnother" data-parent="#exampleAccordion">
                             <i class="fa fa-fw fa-wrench"></i>
@@ -98,7 +76,7 @@
                             </li>
                             <li class="divider"></li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                                <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fa fa-fw fa-sign-out"></i>প্রস্থান</a>
                             </li>
                         </ul>
@@ -204,7 +182,7 @@
                         </form>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                        <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
                             <i class="fa fa-fw fa-sign-out"></i>প্রস্থান</a>
                     </li>
                 </ul>
@@ -212,90 +190,92 @@
         </nav>
 
         <!--Page Body Part--> 
-            <div id="page-wrapper">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">ব্যবহারকারী প্রোফাইল</h1>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                ব্যবহারকারীর প্রোফাইল পরিবর্তন করুনন
-                            </div>
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <!-- Breadcrumbs-->
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a href="#">অন্যান্য</a>
+                    </li>
+                    <li class="breadcrumb-item active">ব্যবহারকারী প্রোফাইল</li>
+                </ol>
+            </div>
 
-                            <div id="message">
-                                <center><h3>${addOrgInfo}</h3></center>
-                            </div>
+            <div id="message">
+                <center><h3>${message}</h3></center>
+            </div>
 
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-offset-2 col-md-6">
-                                        <form action="#" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label" for="userName">ইউজারনেম</label>
-                                                <div class="col-md-9">
-                                                    <input id="userName" name="userName" class="form-control" value="">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label" for="password">নতুন পাসওয়ার্ড</label>
-                                                <div class="col-md-9">
-                                                    <input id="password" name="password" class="form-control" required>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label" for="fullName">পুরো নাম</label>
-                                                <div class="col-md-9">
-                                                    <input id="fullName" name="fullName" value="" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label" for="contactInfo">ঠিকানা</label>
-                                                <div class="col-md-9">
-                                                    <textarea id="contactInfo" name="contactInfo" class="form-control"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label" for="contactCell">যোগাযোগের নম্বর</label>
-                                                <div class="col-md-9">
-                                                    <input id="contactCell" name="contactCell" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label" for="contactEmail">যোগাযোগের ই - মেইল</label>
-                                                <div class="col-md-9">
-                                                    <input type="email" id="contactEmail" name="contactEmail" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label" for="designation">উপাধি</label>
-                                                <div class="col-md-9">
-                                                    <input id="designation" name="designation" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-md-3 control-label" for="department">বিভাগ</label>
-                                                <div class="col-md-9">
-                                                    <input id="department" name="department" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-md-3"></div>
-                                                <div class="col-md-10">
-                                                    <button type="submit" class="btn btn-default">হালনাগাদ করুন</button>
-                                                    <button type="reset" class="btn btn-default">পুনরায় বসান</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
+            <div class="modal-body card card-register mx-auto">
+                <div class="card-header">তথ্য পরিবর্তন করুন</div>
+                <div class="card-body">
+                    <form action="../UpdateInfo" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label class="control-label" for="userName">ইউজারনেম</label>
+                                    <input id="userName" name="userName" class="form-control" value="" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label" for="fullName">পুরো নাম</label>
+                                    <input id="fullName" name="fullName" value="" class="form-control" required>
                                 </div>
                             </div>
                         </div>
-                    </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label class="control-label" for="designation">উপাধি</label>
+                                    <input id="designation" name="designation" class="form-control" value="" readonly>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label" for="department">বিভাগ</label>
+                                    <input id="department" name="department" value="" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label class="control-label" for="contactInfo">যোগাযোগের ঠিকানা</label>
+                                    <textarea id="contactInfo" name="contactInfo" class="form-control" value="" required></textarea>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label" for="contactCell">ফোন নম্বর </label>
+                                    <input id="contactCell" name="contactCell" value="" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <label class="control-label" for="contactEmail">ই-মেইল</label>
+                                    <input type="email" id="contactEmail" name="contactEmail" value="" class="form-control" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="control-label" for="password">পাসওয়ার্ড</label>
+                                    <input type="password" id="password" name="password" value="" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-primary">হালনাগাদ করুন</button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="reset" class="btn btn-default">পুনরায় বসান</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
 
         <!--footer-->
         <footer class="sticky-footer">
@@ -312,7 +292,7 @@
         </a>
 
         <!-- Logout Modal-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -330,53 +310,43 @@
             </div>
         </div>
 
-        <!--Organogram Edit Dialog-->
-        <div class="modal fade" id="editSpce" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">অর্গানোগ্রাম</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    
-                    <div class="modal-body card card-register mx-auto">
-                        <div class="card-header">অর্গানোগ্রাম পরিবর্তন করুন</div>
-                        <div class="card-body">
-                            <form action="" accept-charset="UTF-8" method="" role="form" class="form-horizontal">
-                                <div class="form-group form-row">
-                                        <div class="col-md-6">
-                                            <label for="designation">উপাধি</label>
-                                            <input class="form-control" name="designation" id="designation" type="text" aria-describedby="nameHelp">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label for="department">বিভাগ</label>
-                                            <input class="form-control" name="department" id="department" type="text" aria-describedby="nameHelp">
-                                        </div>
-                                </div>
-                                <div class="form-group form-row">
-                                    <div class="col-md-6">
-                                        <label for="pdesignation">ঊর্ধ্বতন পদ</label>
-                                        <input class="form-control" name="pdesignation" id="pdesignation" type="text" aria-describedby="nameHelp">
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="col-md-6">
-                                        <button type="submit" class="btn btn-primary btn-block" disabled>দাখিল করুন</button>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="reset" class="btn btn-default" disabled>পুনরায় বসান</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <%}%>
-        
+        <script>
+            setTimeout(function () {
+                $('#message').fadeOut('slow');
+            }, 2000);
+
+            $(window).on("load", function () {
+                $.ajax({
+                    type: "POST",
+                    url: "../UserInfo",
+                    success: function (data) {
+                        $.each(data, function (index, element) {
+                            var empOrgId = element.empOrgId;
+                            var userName = element.userName;
+                            var password = element.password;
+                            var fullName = element.fullName;
+                            var contactInfo = element.contactInfo;
+                            var contactCell = element.contactCell;
+                            var contactEmail = element.contactEmail;
+                            var designation = element.designation;
+                            var department = element.department;
+                            var parentId = element.parentId;
+
+                            $(".modal-body #empOrgId").val(empOrgId);
+                            $(".modal-body #userName").val(userName);
+                            $(".modal-body #password").val(password);
+                            $(".modal-body #fullName").val(fullName);
+                            $(".modal-body #contactInfo").val(contactInfo);
+                            $(".modal-body #contactCell").val(contactCell);
+                            $(".modal-body #contactEmail").val(contactEmail);
+                            $(".modal-body #designation").val(designation);
+                            $(".modal-body #department").val(department);
+                            $(".modal-body #parentId").val(parentId);
+                        });
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
