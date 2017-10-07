@@ -215,7 +215,7 @@
                 <center><h3>${message}</h3></center>
             </div>
             
-            <div class="panel-body">
+            <div class="panel-body col-sm-12">
                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead>
                         <tr>

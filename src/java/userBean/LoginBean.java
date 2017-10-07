@@ -36,7 +36,7 @@ public class LoginBean extends HttpServlet {
             employeeId = new String(request.getParameter("username").getBytes("ISO-8859-1"), "UTF-8");
             userPass = new String(request.getParameter("password").getBytes("ISO-8859-1"), "UTF-8");
 
-            System.out.println(userName);
+            System.out.println(employeeId);
             System.out.println(userPass);
             columnName = " * ";
             tableName = " employee_emp_org ";
@@ -48,6 +48,8 @@ public class LoginBean extends HttpServlet {
                 designation = rs.getString("designation");
                 department = rs.getString("department");
 
+                System.out.println(designation);
+                System.out.println(department);
                 if (department.equals("webadmin") && designation.equals("webadmin")) {
                     role = "webadmin";
                 } else if (department.equals("frontdesk") && designation.equals("frontdesk")) {

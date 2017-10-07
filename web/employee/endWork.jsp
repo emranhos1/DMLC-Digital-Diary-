@@ -210,7 +210,7 @@
                     <li class="breadcrumb-item active">নিস্পত্তিক্রিত চিঠি সমূহ</li>
                 </ol>
 
-                <div class="panel-body">
+                <div class="panel-body col-sm-12">
                     <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                             <tr>
@@ -292,6 +292,10 @@
                             });
                         }
                     });
+                });
+
+                $(document).ready(function () {
+                    $(".col-sm-12").css("overflow-x", "scroll");
                 });
             </script>
     </body>
