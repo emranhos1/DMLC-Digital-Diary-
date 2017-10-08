@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -41,6 +43,9 @@ public class AllNewWorkEmp extends HttpServlet {
     private int[] forwardedToEmployeeId;
     private int[] acknowledgedByEmployeeId;
     private String[] receivingDate;
+    private SimpleDateFormat dateFormat;
+    private Date date;
+    private String curDate;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -52,6 +57,10 @@ public class AllNewWorkEmp extends HttpServlet {
             HttpSession session = request.getSession();
             userId = session.getAttribute("idUser").toString();
 
+            dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            date = new Date();
+            curDate = dateFormat.format(date);
+            
             columnName = " * ";
             tableName = " letter_receives_document ";
             whereCondition = " forwarded_to_employee_id = '" + userId + "' and status = 'Active' ";
@@ -105,12 +114,12 @@ public class AllNewWorkEmp extends HttpServlet {
 
                 response.setContentType("text/plain");
                 response.getWriter().write("<tr>"
-                        + "<td>" + (i + 1) + "<input  type='hidden' id='letterId' name='letterId' class='form-control' value='" + letterId[i] + "'/></td>"
-                        + "<td>" + receivingDate[i] + "</td>"
+                        + "<td>" + (i + 1) + "<input data-letterid ="+i+" type='hidden' id='letterId"+i+"' name='letterId' class='form-control' value='" + letterId[i] + "'/></td>"
+                        + "<td>" + receivingDate[i] + "<input type='hidden' id='docId' value='"+documentId[i]+"'/></td>"
                         + "<td>" + depOfOrigin[i] + "</td>"
                         + "<td>" + requestId[i] + "</td>"
                         + "<td>" + subjectOfLetter[i] + "</td>"
-                        + "<td>" + endDate[i] + "</td>"
+                        + "<td>" + endDate[i] + "<input data-enddate ="+i+" type='hidden' id='endDate"+i+"' name='letterId' class='form-control' value='" + endDate[i] + "'/></td>"
                         + "<td>" + shortDesc[i] + "</td>"
                         + "<td>" + prioritys + "</td>"
                         + "<td><img src='../Uploaded_file/" + scanFile[i] + "' alt='এই ফাইলটি লোড করা যাচ্ছেনা' height='100px' width='100px'/></td>"

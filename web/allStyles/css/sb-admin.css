@@ -344,3 +344,14 @@ footer.sticky-footer {
 @media (min-width: 992px) {
   body.sidenav-toggled footer.sticky-footer {
     width: calc(100% - 55px); } }
+
+.day5{
+    background-color: #fddddd !important;
+}
+.day10{
+    background-color: #ffffbd !important;
+}
+
+.day15{
+    background-color: #d0ffca !important;
+}
