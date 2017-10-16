@@ -2,8 +2,11 @@ package userBean;
 
 import com.google.gson.Gson;
 import dao.SelectQueryDao;
+import dbConnection.conRs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.json.JSONArray;
 import java.sql.ResultSet;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,18 +26,10 @@ public class UserInfo extends HttpServlet {
     private String tableName;
     private String whereCondition;
     private ResultSet selectUserInfo;
-    private String empOrgId;
-    private String userName;
-    private String password;
-    private String fullName;
-    private String contactInfo;
-    private String contactCell;
-    private String contactEmail;
-    private String designation;
-    private String department;
-    private String parentId;
-    private JSONArray jsonArray;
     private JSONObject jsonObject;
+    private conRs conrs;
+    private Connection con;
+    private PreparedStatement pstm;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -50,7 +44,12 @@ public class UserInfo extends HttpServlet {
             tableName = " employee_emp_org ";
             whereCondition = " employee_id = '" + userId + "'";
 
-            selectUserInfo = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            
+            con = conrs.getCon();
+            selectUserInfo = conrs.getRs();
+            pstm = conrs.getPstm();
+            
             while (selectUserInfo.next()) {
                 jsonObject = new JSONObject();
                 jsonObject.put("empOrgId", selectUserInfo.getString("employee_organogram_id"));
@@ -71,6 +70,14 @@ public class UserInfo extends HttpServlet {
             response.getWriter().write(json);
         } catch (SQLException | JSONException ex) {
             Logger.getLogger(UserInfo.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm.close();
+                selectUserInfo.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

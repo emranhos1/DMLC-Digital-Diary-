@@ -3,8 +3,11 @@ package userBean;
 import dao.InsertQueryDao;
 import dao.SelectQueryDao;
 import dao.UpdateQueryDao;
+import dbConnection.conRs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -25,7 +28,6 @@ public class ReturnErrorDocument extends HttpServlet {
     private String columnName;
     private String tableName;
     private String whereCondition;
-    private ResultSet rs;
     private SimpleDateFormat dateFormate;
     private Date date;
     private String forwardingDateTime;
@@ -43,6 +45,12 @@ public class ReturnErrorDocument extends HttpServlet {
     private String acknowledgedByEmployeeUsername;
     private int forwardedToEmployeeId;
     private String forwardedToEmployeeUsername;
+    private conRs conrs1;
+    private conRs conrs2;
+    private conRs conrs3;
+    private Connection con1, con2, con3;
+    private ResultSet rs1, rs2, rs3;
+    private PreparedStatement pstm1, pstm2, pstm3;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -66,31 +74,43 @@ public class ReturnErrorDocument extends HttpServlet {
             columnName = " user_name, employee_organogram_id ";
             tableName = " employee ";
             whereCondition = " employee_id = '" + userId + "' ";
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs1 = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
             
-            while (rs.next()){
+            con1 = conrs1.getCon();
+            rs1 = conrs1.getRs();
+            pstm1 = conrs1.getPstm();
+            
+            while (rs1.next()){
                 acknowledgedByEmployeeId = userId;
-                acknowledgedByEmployeeUsername = rs.getString("user_name");
-                empOrgId = rs.getInt("employee_organogram_id");
+                acknowledgedByEmployeeUsername = rs1.getString("user_name");
+                empOrgId = rs1.getInt("employee_organogram_id");
             }
             
             columnName = " parent_id ";
             tableName = " employee_organogram ";
             whereCondition = " employee_organogram_id = '" + empOrgId + "' ";
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs2 = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
             
-            while (rs.next()){
-                parentId = rs.getInt("parent_id");
+            con2 = conrs2.getCon();
+            rs2 = conrs2.getRs();
+            pstm2 = conrs2.getPstm();
+            
+            while (rs2.next()){
+                parentId = rs2.getInt("parent_id");
             }
             
             columnName = " employee_id, user_name ";
             tableName = " employee ";
             whereCondition = " employee_organogram_id = '" + parentId + "' ";
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs3 = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
             
-            while (rs.next()){
-                forwardedToEmployeeId = rs.getInt("employee_id");
-                forwardedToEmployeeUsername = rs.getString("user_name");
+            con3 = conrs3.getCon();
+            rs3 = conrs3.getRs();
+            pstm3 = conrs3.getPstm();
+            
+            while (rs3.next()){
+                forwardedToEmployeeId = rs3.getInt("employee_id");
+                forwardedToEmployeeUsername = rs3.getString("user_name");
             }
             
             tableName = " receives_document ";
@@ -131,6 +151,20 @@ public class ReturnErrorDocument extends HttpServlet {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ReturnErrorDocument.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm1.close();
+                pstm2.close();
+                pstm3.close();
+                rs1.close();
+                rs2.close();
+                rs3.close();
+                con1.close();
+                con2.close();
+                con3.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

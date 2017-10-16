@@ -4,6 +4,9 @@
     Author     : Md. Emran Hossain
 --%>
 
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="dbConnection.conRs"%>
 <%@page import="dao.SelectQueryDao"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,6 +26,12 @@
         <link href="allStyles/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom styles for this template-->
         <link href="allStyles/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <!-- Bootstrap core JavaScript-->
+        <script src="allStyles/vendor/jquery/jquery.min.js" type="text/javascript"></script>
+        <script src="allStyles/vendor/popper/popper.min.js" type="text/javascript"></script>
+        <script src="allStyles/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="allStyles/vendor/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
     </head>
 
     <body class="bg-dark">
@@ -41,7 +50,7 @@
                 <center>
                     <div class="card-header">প্রবেশ করুন</div>
                     <div id="message">
-                        <center><h3>${message}</h3></center>
+                        <center><h3>${message}<%session.setAttribute("message", null);%></h3></center>
                     </div>
                 </center>
                 <div class="card-body">
@@ -54,10 +63,17 @@
                                     <%
                                         int i = 0;
                                         ResultSet rs;
+                                        conRs conrs;
+                                        Connection con;
+                                        PreparedStatement pstm;
                                         String columnName = " * ";
                                         String tableName = " employee_emp_org ";
-                                        
-                                        rs = SelectQueryDao.selectQueryWithOutWhereClause(columnName, tableName);
+
+                                        conrs = SelectQueryDao.selectQueryWithOutWhereClause(columnName, tableName);
+                                        con = conrs.getCon();
+                                        rs = conrs.getRs();
+                                        pstm = conrs.getPstm();
+
                                         rs.last();
                                         int orgRow = rs.getRow();
                                         int[] employeeId = new int[orgRow];
@@ -65,7 +81,9 @@
                                         String[] uName = new String[orgRow];
                                         String[] designation = new String[orgRow];
                                         String[] department = new String[orgRow];
+
                                         rs.beforeFirst();
+
                                         while (rs.next()) {
                                             employeeId[i] = rs.getInt("employee_id");
                                             uName[i] = rs.getString("user_name");
@@ -79,10 +97,13 @@
                                     <option value="<%=employeeId[i]%>"><%=designation[i]%> (<%=department[i]%>)</option>
                                     <%
                                         }
+                                        pstm.close();
+                                        rs.close();
+                                        con.close();
                                     %>
                                 </select>
                             </div>
-                                
+
                             <div class="form-group">
                                 <label for="password" class="control-label">পাসওয়ার্ড</label>
                                 <input class="form-control" placeholder="Password" name="password" type="password" value="" required>
@@ -103,13 +124,7 @@
                 </div>
             </div>
         </div>
-        <!-- Bootstrap core JavaScript-->
-        <script src="allStyles/vendor/jquery/jquery.min.js" type="text/javascript"></script>
-        <script src="allStyles/vendor/popper/popper.min.js" type="text/javascript"></script>
-        <script src="allStyles/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="allStyles/vendor/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
-
+        
         <script type="text/javascript">
             setTimeout(function () {
                 $('#message').fadeOut('fast');

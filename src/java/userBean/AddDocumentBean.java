@@ -2,7 +2,7 @@ package userBean;
 
 import dao.InsertQueryDao;
 import dao.SelectQueryDao;
-import dbConnection.DBConnection;
+import dbConnection.conRs;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -29,20 +29,13 @@ import javax.servlet.http.Part;
 @MultipartConfig(maxFileSize = 169999999)
 public class AddDocumentBean extends HttpServlet {
 
-    private InputStream inputStream;
-    private long fileSize;
     private InputStream fileContent;
-    private DBConnection db = new DBConnection();
-    private PreparedStatement pstm;
-    static Connection con;
-    private int insertFile;
     private String subject;
     private String description;
     private Part scanfile;
     private String requestId;
     private String depOfOrigin;
     private String fileName;
-    private String photo;
     private String uploaded_file;
     private File newFile;
     private OutputStream out1;
@@ -62,6 +55,9 @@ public class AddDocumentBean extends HttpServlet {
     private String newFileName;
     private File file;
     private int currentStatus;
+    private conRs conrs;
+    private Connection con;
+    private PreparedStatement pstm;
 
     private String getFileName(final Part part) {
         final String partHeader = part.getHeader("content-disposition");
@@ -105,7 +101,6 @@ public class AddDocumentBean extends HttpServlet {
             dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
             date = new Date();
 
-            photo = "";
             uploaded_file = "E:/Programming/1. Office project/Project/DMLC/DMLC (Digital Diary)/web/Uploaded_file/";
             newFile = new File(uploaded_file);
 
@@ -129,7 +124,12 @@ public class AddDocumentBean extends HttpServlet {
             columnName = " document_id ";
             whereCondition = " document_id = (Select Max(document_id) from document) ";
 
-            selectMaxId = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            
+            con = conrs.getCon();
+            selectMaxId = conrs.getRs();
+            pstm = conrs.getPstm();
+            
             while (selectMaxId.next()) {
                 documentId = selectMaxId.getInt("document_id");
             }
@@ -173,6 +173,14 @@ public class AddDocumentBean extends HttpServlet {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AddDocumentBean.class.getName()).log(Level.SEVERE, null, ex);
+        } finally{
+            try {
+                pstm.close();
+                selectMaxId.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

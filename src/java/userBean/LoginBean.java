@@ -1,8 +1,11 @@
 package userBean;
 
 import dao.SelectQueryDao;
+import dbConnection.conRs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -15,7 +18,6 @@ import javax.servlet.http.HttpSession;
 
 public class LoginBean extends HttpServlet {
 
-    private String userName;
     private String userPass;
     private String columnName;
     private String tableName;
@@ -26,6 +28,9 @@ public class LoginBean extends HttpServlet {
     private String department;
     private String role;
     private String employeeId;
+    private conRs conrs;
+    private Connection con;
+    private PreparedStatement pstm;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -36,20 +41,21 @@ public class LoginBean extends HttpServlet {
             employeeId = new String(request.getParameter("username").getBytes("ISO-8859-1"), "UTF-8");
             userPass = new String(request.getParameter("password").getBytes("ISO-8859-1"), "UTF-8");
 
-            System.out.println(employeeId);
-            System.out.println(userPass);
             columnName = " * ";
             tableName = " employee_emp_org ";
             whereCondition = " employee_id = '" + employeeId + "' and password = '" + userPass + "' ";;
 
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            
+            con = conrs.getCon();
+            rs = conrs.getRs();
+            pstm = conrs.getPstm();
+            
             if (rs.next()) {
                 userId = rs.getInt("employee_id");
                 designation = rs.getString("designation");
                 department = rs.getString("department");
 
-                System.out.println(designation);
-                System.out.println(department);
                 if (department.equals("webadmin") && designation.equals("webadmin")) {
                     role = "webadmin";
                 } else if (department.equals("frontdesk") && designation.equals("frontdesk")) {
@@ -88,6 +94,14 @@ public class LoginBean extends HttpServlet {
 
         } catch (SQLException ex) {
             Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm.close();
+                rs.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

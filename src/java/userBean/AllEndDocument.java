@@ -1,8 +1,11 @@
 package userBean;
 
 import dao.SelectQueryDao;
+import dbConnection.conRs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -32,6 +35,9 @@ public class AllEndDocument extends HttpServlet {
     private String[] scanFile;
     private String[] priority;
     private String status;
+    private conRs conrs;
+    private Connection con;
+    private PreparedStatement pstm;
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,8 +48,12 @@ public class AllEndDocument extends HttpServlet {
             columnName = "*";
             tableName = " letter ";
             whereCondition = " current_status = 3 ";
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
 
+            con = conrs.getCon();
+            rs = conrs.getRs();
+            pstm = conrs.getPstm();
+            
             rs.last();
             dataRow = rs.getRow();
             letterId = new String[dataRow];
@@ -91,6 +101,14 @@ public class AllEndDocument extends HttpServlet {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AllNewDocument.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm.close();
+                rs.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

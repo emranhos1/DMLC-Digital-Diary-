@@ -2,8 +2,11 @@ package userBean;
 
 import dao.InsertQueryDao;
 import dao.SelectQueryDao;
+import dbConnection.conRs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -30,6 +33,9 @@ public class InsertComment extends HttpServlet {
     private String inputDate;
     private String values;
     private boolean addComment;
+    private conRs conrs;
+    private Connection con;
+    private PreparedStatement pstm;
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -50,7 +56,11 @@ public class InsertComment extends HttpServlet {
             columnName = " user_name ";
             tableName = " employee ";
             whereCondition = " employee_id = '" + userId + "'";
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            
+            con = conrs.getCon();
+            rs = conrs.getRs();
+            pstm = conrs.getPstm();
             
             while(rs.next()){
                 userName = rs.getString("user_name");
@@ -72,6 +82,14 @@ public class InsertComment extends HttpServlet {
             }            
         } catch (SQLException ex) {
             Logger.getLogger(InsertComment.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm.close();
+                rs.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

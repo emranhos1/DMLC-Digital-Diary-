@@ -1,8 +1,11 @@
 package userBean;
 
 import dao.SelectQueryDao;
+import dbConnection.conRs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -18,7 +21,6 @@ public class AllEmpUnderEmp extends HttpServlet {
     private String columnName;
     private String tableName;
     private String whereCondition;
-    private ResultSet rs;
     private int empOrgId;
     private int orgRow;
     private int[] employeeId;
@@ -28,6 +30,10 @@ public class AllEmpUnderEmp extends HttpServlet {
     private int[] hasParent;
     private int[] parentId;
     private int i;
+    private conRs conrs1, conrs2;
+    private Connection con1, con2;
+    private ResultSet rs1, rs2;
+    private PreparedStatement pstm1, pstm2;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,33 +48,41 @@ public class AllEmpUnderEmp extends HttpServlet {
             columnName = " * ";
             tableName = " employee ";
             whereCondition = " employee_id = '" + userId + "'";
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs1 = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
             
-            while (rs.next()){
-                empOrgId = rs.getInt("employee_organogram_id");
+            con1 = conrs1.getCon();
+            rs1 = conrs1.getRs();
+            pstm1 = conrs1.getPstm();
+            
+            while (rs1.next()){
+                empOrgId = rs1.getInt("employee_organogram_id");
             }
             
             columnName = " * ";
             tableName = " employee_emp_org ";
             whereCondition = " parent_id = '" + empOrgId + "'";
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs2 = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
             
-            rs.last();
-            orgRow = rs.getRow();
+            con2 = conrs2.getCon();
+            rs2 = conrs2.getRs();
+            pstm2 = conrs2.getPstm();
+            
+            rs2.last();
+            orgRow = rs2.getRow();
             employeeId = new int[orgRow];
             uName = new String[orgRow];
             designation = new String[orgRow];
             department = new String[orgRow];
             hasParent = new int[orgRow];
             parentId = new int[orgRow];
-            rs.beforeFirst();
-            while (rs.next()) {
-                employeeId[i] = rs.getInt("employee_id");
-                uName[i] = rs.getString("user_name");
-                designation[i] = rs.getString("designation");
-                department[i] = rs.getString("department");
-                hasParent[i] = rs.getInt("has_parent");
-                parentId[i] = rs.getInt("parent_id");
+            rs2.beforeFirst();
+            while (rs2.next()) {
+                employeeId[i] = rs2.getInt("employee_id");
+                uName[i] = rs2.getString("user_name");
+                designation[i] = rs2.getString("designation");
+                department[i] = rs2.getString("department");
+                hasParent[i] = rs2.getInt("has_parent");
+                parentId[i] = rs2.getInt("parent_id");
                 i++;
             }
             for (i = 0; i < orgRow; i++) {
@@ -77,6 +91,17 @@ public class AllEmpUnderEmp extends HttpServlet {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AllEmpUnderEmp.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm1.close();
+                pstm2.close();
+                rs1.close();
+                rs2.close();
+                con1.close();
+                con2.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

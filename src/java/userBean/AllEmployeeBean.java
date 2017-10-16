@@ -1,8 +1,11 @@
 package userBean;
 
 import dao.SelectQueryDao;
+import dbConnection.conRs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -31,6 +34,9 @@ public class AllEmployeeBean extends HttpServlet {
     private String Report;
     private String[] department;
     private String[] designation;
+    private conRs conrs;
+    private Connection con;
+    private PreparedStatement pstm;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,8 +48,12 @@ public class AllEmployeeBean extends HttpServlet {
             columnName = "*";
             tableName = " employee_emp_org ";
             whereCondition = " user_name != 'null' ";
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
 
+            con = conrs.getCon();
+            rs = conrs.getRs();
+            pstm = conrs.getPstm();
+            
             rs.last();
             dataRow = rs.getRow();
             userName = new String[dataRow];
@@ -84,6 +94,14 @@ public class AllEmployeeBean extends HttpServlet {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AllEmployeeBean.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm.close();
+                rs.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

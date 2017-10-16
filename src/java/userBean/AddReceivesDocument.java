@@ -1,6 +1,7 @@
 package userBean;
 
 import dao.*;
+import dbConnection.conRs;
 import java.io.*;
 import java.sql.*;
 import java.text.SimpleDateFormat;
@@ -37,6 +38,9 @@ public class AddReceivesDocument extends HttpServlet {
     private String endDate;
     private String recivedStatus;
     private String currentDate;
+    private conRs conrs1, conrs2, conrs3;
+    private Connection con1, con2, con3;
+    private PreparedStatement pstm1, pstm2, pstm3;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -62,7 +66,11 @@ public class AddReceivesDocument extends HttpServlet {
             tableName = " employee ";
             whereCondition = " employee_id = '" + userId + "'";
 
-            selectAcknowledgedUserName = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs1 = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+
+            con1 = conrs1.getCon();
+            selectAcknowledgedUserName = conrs1.getRs();
+            pstm1 = conrs1.getPstm();
 
             while (selectAcknowledgedUserName.next()) {
                 acknowledgedByEmployeeUserName = selectAcknowledgedUserName.getString("user_name");
@@ -72,8 +80,12 @@ public class AddReceivesDocument extends HttpServlet {
             tableName = " employee ";
             whereCondition = " employee_id = '" + goingToUserId + "'";
 
-            selectForwardedUserName = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs2 = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
 
+            con2 = conrs2.getCon();
+            selectForwardedUserName = conrs2.getRs();
+            pstm2 = conrs2.getPstm();
+            
             while (selectForwardedUserName.next()) {
                 forwardedToEmployeeUsername = selectForwardedUserName.getString("user_name");
             }
@@ -95,7 +107,12 @@ public class AddReceivesDocument extends HttpServlet {
                 tableName = " letter ";
                 columnName = " document_id ";
                 whereCondition = " letter_id = '" + letterId + "'";
-                selectDocumentId = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+                conrs3 = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+
+                con3 = conrs3.getCon();
+                selectDocumentId = conrs3.getRs();
+                pstm3 = conrs3.getPstm();
+
                 while (selectDocumentId.next()) {
                     documentId = selectDocumentId.getInt("document_id");
                 }
@@ -144,6 +161,20 @@ public class AddReceivesDocument extends HttpServlet {
 
         } catch (SQLException ex) {
             Logger.getLogger(AddReceivesDocument.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm1.close();
+                pstm2.close();
+                pstm3.close();
+                selectAcknowledgedUserName.close();
+                selectForwardedUserName.close();
+                selectDocumentId.close();
+                con1.close();
+                con2.close();
+                con3.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

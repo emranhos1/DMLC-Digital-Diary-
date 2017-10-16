@@ -1,8 +1,11 @@
 package userBean;
 
 import dao.SelectQueryDao;
+import dbConnection.conRs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -23,7 +26,9 @@ public class AllOrganogramBean extends HttpServlet {
     private String[] department;
     private int[] has_parent;
     private int[] parent_id;
-    private String Report;
+    private conRs conrs;
+    private Connection con;
+    private PreparedStatement pstm;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -34,8 +39,12 @@ public class AllOrganogramBean extends HttpServlet {
             i = 0;
             columnName = "*";
             tableName = " employee_organogram ";
-            rs = SelectQueryDao.selectQueryWithOutWhereClause(columnName, tableName);
+            conrs = SelectQueryDao.selectQueryWithOutWhereClause(columnName, tableName);
 
+            con = conrs.getCon();
+            rs = conrs.getRs();
+            pstm = conrs.getPstm();
+            
             rs.last();
             int dataRow = rs.getRow();
             empOrgId = new int[dataRow];
@@ -73,6 +82,14 @@ public class AllOrganogramBean extends HttpServlet {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AllOrganogramBean.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm.close();
+                rs.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

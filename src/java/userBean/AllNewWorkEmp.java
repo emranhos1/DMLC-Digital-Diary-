@@ -1,12 +1,13 @@
 package userBean;
 
 import dao.SelectQueryDao;
+import dbConnection.conRs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -37,15 +38,13 @@ public class AllNewWorkEmp extends HttpServlet {
     private int[] letterId;
     private int[] forwardingId;
     private String[] acknowledgedByEmployeeUsername;
-    private String ackEmployeeId;
-    private String userName;
     private String[] forwardedToEmployeeUsername;
     private int[] forwardedToEmployeeId;
     private int[] acknowledgedByEmployeeId;
     private String[] receivingDate;
-    private SimpleDateFormat dateFormat;
-    private Date date;
-    private String curDate;
+    private conRs conrs;
+    private Connection con;
+    private PreparedStatement pstm;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -57,15 +56,15 @@ public class AllNewWorkEmp extends HttpServlet {
             HttpSession session = request.getSession();
             userId = session.getAttribute("idUser").toString();
 
-            dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            date = new Date();
-            curDate = dateFormat.format(date);
-            
             columnName = " * ";
             tableName = " letter_receives_document ";
             whereCondition = " forwarded_to_employee_id = '" + userId + "' and status = 'Active' ";
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
 
+            con = conrs.getCon();
+            rs = conrs.getRs();
+            pstm = conrs.getPstm();
+            
             rs.last();
             dataRow = rs.getRow();
             letterId = new int[dataRow];
@@ -138,6 +137,14 @@ public class AllNewWorkEmp extends HttpServlet {
             }
         } catch (SQLException ex) {
             Logger.getLogger(AllNewWorkEmp.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm.close();
+                rs.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

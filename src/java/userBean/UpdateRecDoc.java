@@ -2,8 +2,11 @@ package userBean;
 
 import dao.SelectQueryDao;
 import dao.UpdateQueryDao;
+import dbConnection.conRs;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -29,6 +32,9 @@ public class UpdateRecDoc extends HttpServlet {
     private boolean updateRecDoc;
     private String currentDate;
     private String columnNameANDcolumnValue;
+    private conRs conrs;
+    private Connection con;
+    private PreparedStatement pstm;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -46,8 +52,12 @@ public class UpdateRecDoc extends HttpServlet {
             columnName = " status, acknowledgement_date_time ";
             tableName = " receives_document ";
             whereCondition = " letter_id = '" + letterId + "'";
-            rs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
+            conrs = SelectQueryDao.selectQueryWithWhereClause(columnName, tableName, whereCondition);
 
+            con = conrs.getCon();
+            rs = conrs.getRs();
+            pstm = conrs.getPstm();
+            
             while (rs.next()) {
                 status = rs.getString("status");
                 acknowledgementDateTime = rs.getString("acknowledgement_date_time");
@@ -59,6 +69,14 @@ public class UpdateRecDoc extends HttpServlet {
             }
         } catch (SQLException ex) {
             Logger.getLogger(UpdateRecDoc.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                pstm.close();
+                rs.close();
+                con.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(LoginBean.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }
