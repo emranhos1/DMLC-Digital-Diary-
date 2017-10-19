@@ -4,7 +4,7 @@
 <footer class="sticky-footer">
     <div class="container">
         <div class="text-center">
-            <small>Copyright © Your Website 2017</small>
+            <small>Powered By Softcell Solution Ltd.</small>
         </div>
     </div>
 </footer>

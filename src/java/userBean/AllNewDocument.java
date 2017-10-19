@@ -79,17 +79,10 @@ public class AllNewDocument extends HttpServlet {
             }
 
             for (i = 0; i < dataRow; i++) {
-                if (currentStatus[i] == 1) {
-                    status = "শুরু হয়েছে";
-                } else if (currentStatus[i] == 2) {
-                    status = "চলমান";
-                } else if (currentStatus[i] == 3) {
-                    status = "শেষ হয়েছে";
-                }
+                
                 response.setContentType("text/plain");
                 response.getWriter().write("<tr>"
                         + "<td>" + (i + 1) + "</td>"
-                        + "<td>" + status + "</td>"
                         + "<td>" + receivingDate[i] + "</td>"
                         + "<td>" + depOfOrigin[i] + "</td>"
                         + "<td>" + requestId[i] + "</td>"

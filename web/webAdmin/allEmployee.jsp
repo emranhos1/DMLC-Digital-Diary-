@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Web Admin Dashboard</title>
+        <title>সকল কর্মচারী</title>
         <!-- Bootstrap core CSS-->
         <link href="../allStyles/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom fonts for this template-->
@@ -51,9 +51,9 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="#">অর্গানোগ্রাম</a>
+                        <a href="#">কর্মচারী</a>
                     </li>
-                    <li class="breadcrumb-item active">সকল অর্গানোগ্রাম</li>
+                    <li class="breadcrumb-item active">সকল কর্মচারী</li>
                 </ol>
 
                 <!-- Example DataTables -->

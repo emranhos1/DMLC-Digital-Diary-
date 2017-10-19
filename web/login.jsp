@@ -19,7 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>SB Admin - Start Bootstrap Template</title>
+        <title>DLMC(Digital Diary)</title>
         <!-- Bootstrap core CSS-->
         <link href="allStyles/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom fonts for this template-->
@@ -118,9 +118,6 @@
                             <input type="submit" value="Login" class="btn btn-primary btn-block"/>
                         </div>
                     </form>
-                    <div class="text-center">
-                        <a class="d-block small" href="#">Forgot Password?</a>
-                    </div>
                 </div>
             </div>
         </div>

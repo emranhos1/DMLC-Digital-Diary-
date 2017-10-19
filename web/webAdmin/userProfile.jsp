@@ -13,7 +13,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Web Admin Profile</title>
+        <title>ব্যবহারকারী প্রোফাইল</title>
         <!-- Bootstrap core CSS-->
         <link href="../allStyles/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom fonts for this template-->

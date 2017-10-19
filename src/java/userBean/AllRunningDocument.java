@@ -83,13 +83,10 @@ public class AllRunningDocument extends HttpServlet {
             }
 
             for (i = 0; i < dataRow; i++) {
-                if (currentStatus[i] == 2) {
-                    status = "চলমান";
-                }
+                
                 response.setContentType("text/plain");
                 response.getWriter().write("<tr>"
                         + "<td>" + (i + 1) + "</td>"
-                        + "<td>" + status + "</td>"
                         + "<td>" + receivingDate[i] + "</td>"
                         + "<td>" + depOfOrigin[i] + "</td>"
                         + "<td>" + requestId[i] + "</td>"

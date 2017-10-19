@@ -2,7 +2,7 @@
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="#">Director General</a>
+    <a class="navbar-brand" href="#">মহাপরিচালক</a>
 
     <!--Navigation Side bar-->
     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -39,8 +39,6 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseAnother">
                     <li><a href="userProfile.jsp"><i class="fa fa-user fa-fw"></i> ব্যবহারকারী প্রোফাইল</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> সেটিংস</a>
                     </li>
                     <li class="divider"></li>
                     <li class="nav-item">

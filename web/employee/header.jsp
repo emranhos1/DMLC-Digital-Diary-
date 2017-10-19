@@ -37,8 +37,6 @@
                 <ul class="sidenav-second-level collapse" id="collapseAnother">
                     <li><a href="userProfile.jsp"><i class="fa fa-user fa-fw"></i> ব্যবহারকারী প্রোফাইল</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> সেটিংস</a>
-                    </li>
                     <li class="divider"></li>
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="modal" data-target="#logoutModal">

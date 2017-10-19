@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Web Admin Dashboard</title>
+        <title>ড্যাশবোর্ড</title>
         <!-- Bootstrap core CSS-->
         <link href="../allStyles/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom fonts for this template-->
@@ -53,9 +53,8 @@
                 <!-- Breadcrumbs-->
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
-                        <a href="#">Dashboard</a>
+                        <a href="#">ড্যাশবোর্ড</a>
                     </li>
-                    <li class="breadcrumb-item active">My Dashboard</li>
                 </ol>
                 <!-- Icon Cards-->
                 <div class="row">
@@ -65,10 +64,10 @@
                                 <div class="card-body-icon">
                                     <i class="fa fa-fw fa-comments"></i>
                                 </div>
-                                <div class="mr-5">26 New Messages!</div>
+                                <div class="mr-5">নতুন অর্গানোগ্রাম</div>
                             </div>
-                            <a class="card-footer text-white clearfix small z-1" href="#">
-                                <span class="float-left">View Details</span>
+                            <a class="card-footer text-white clearfix small z-1" href="addOrganogram.jsp">
+                                <span class="float-left">বিস্তারিত দেখুন</span>
                                 <span class="float-right">
                                     <i class="fa fa-angle-right"></i>
                                 </span>
@@ -81,10 +80,10 @@
                                 <div class="card-body-icon">
                                     <i class="fa fa-fw fa-list"></i>
                                 </div>
-                                <div class="mr-5">11 New Tasks!</div>
+                                <div class="mr-5">সকল অর্গানোগ্রাম</div>
                             </div>
-                            <a class="card-footer text-white clearfix small z-1" href="#">
-                                <span class="float-left">View Details</span>
+                            <a class="card-footer text-white clearfix small z-1" href="allOrganogram.jsp">
+                                <span class="float-left">বিস্তারিত দেখুন</span>
                                 <span class="float-right">
                                     <i class="fa fa-angle-right"></i>
                                 </span>
@@ -97,10 +96,10 @@
                                 <div class="card-body-icon">
                                     <i class="fa fa-fw fa-shopping-cart"></i>
                                 </div>
-                                <div class="mr-5">123 New Orders!</div>
+                                <div class="mr-5">নতুন কর্মচারী</div>
                             </div>
-                            <a class="card-footer text-white clearfix small z-1" href="#">
-                                <span class="float-left">View Details</span>
+                            <a class="card-footer text-white clearfix small z-1" href="addEmployee.jsp">
+                                <span class="float-left">বিস্তারিত দেখুন</span>
                                 <span class="float-right">
                                     <i class="fa fa-angle-right"></i>
                                 </span>
@@ -113,10 +112,10 @@
                                 <div class="card-body-icon">
                                     <i class="fa fa-fw fa-support"></i>
                                 </div>
-                                <div class="mr-5">13 New Tickets!</div>
+                                <div class="mr-5">সকল কর্মচারী</div>
                             </div>
-                            <a class="card-footer text-white clearfix small z-1" href="#">
-                                <span class="float-left">View Details</span>
+                            <a class="card-footer text-white clearfix small z-1" href="allEmployee.jsp">
+                                <span class="float-left">বিস্তারিত দেখুন</span>
                                 <span class="float-right">
                                     <i class="fa fa-angle-right"></i>
                                 </span>

@@ -14,7 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Employee Dashboard</title>
+        <title>নিস্পত্তিক্রিত চিঠি সমূহ</title>
         <!-- Bootstrap core CSS-->
         <link href="../allStyles/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- Custom fonts for this template-->
@@ -64,8 +64,8 @@
                     <thead>
                         <tr>
                             <th>ক্রমিক নং</th>
-                            <th>বর্তমান অবস্থা</th>
                             <th>প্রাপ্তির তারিখ</th>
+                            <th>শেষ তারিখ</th>
                             <th>প্রেরক</th>
                             <th>স্বারক নাম্বার/সুত্র</th>
                             <th>চিঠি বিষয়</th>
@@ -75,9 +75,9 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>ক্রমিক নং</th>
-                            <th>বর্তমান অবস্থা</th>
+                            <th>ক্রমিক নং</th>   
                             <th>প্রাপ্তির তারিখ</th>
+                            <th>শেষ তারিখ</th>
                             <th>প্রেরক</th>
                             <th>স্বারক নাম্বার/সুত্র</th>
                             <th>চিঠি বিষয়</th>
