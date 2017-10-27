@@ -64,7 +64,7 @@ public class AllNewWorkEmp extends HttpServlet {
             con = conrs.getCon();
             rs = conrs.getRs();
             pstm = conrs.getPstm();
-            
+
             rs.last();
             dataRow = rs.getRow();
             letterId = new int[dataRow];
@@ -103,7 +103,7 @@ public class AllNewWorkEmp extends HttpServlet {
                 acknowledgedByEmployeeId[i] = rs.getInt("acknowledged_by_employee_id");
                 i++;
             }
-            
+
             for (i = 0; i < dataRow; i++) {
                 if (priority[i] == 1) {
                     prioritys = "জরুরী";
@@ -113,14 +113,17 @@ public class AllNewWorkEmp extends HttpServlet {
 
                 response.setContentType("text/plain");
                 response.getWriter().write("<tr>"
-                        + "<td>" + (i + 1) + "<input data-letterid ="+i+" type='hidden' id='letterId"+i+"' name='letterId' class='form-control' value='" + letterId[i] + "'/></td>"
-                        + "<td>" + depOfOrigin[i] + "<input type='hidden' id='docId' value='"+documentId[i]+"'/></td>"
+                        + "<td>" + (i + 1) + "<input data-letterid =" + i + " type='hidden' id='letterId" + i + "' name='letterId' class='form-control' value='" + letterId[i] + "'/></td>"
+                        + "<td>" + depOfOrigin[i] + "<input type='hidden' id='docId' value='" + documentId[i] + "'/></td>"
                         + "<td>" + requestId[i] + "</td>"
                         + "<td>" + subjectOfLetter[i] + "</td>"
-                        + "<td>" + endDate[i] + "<input data-enddate ="+i+" type='hidden' id='endDate"+i+"' name='letterId' class='form-control' value='" + endDate[i] + "'/></td>"
+                        + "<td>" + endDate[i] + "<input data-enddate =" + i + " type='hidden' id='endDate" + i + "' name='letterId' class='form-control' value='" + endDate[i] + "'/></td>"
                         + "<td>" + shortDesc[i] + "</td>"
                         + "<td>" + prioritys + "</td>"
-                        + "<td><img src='../Uploaded_file/" + scanFile[i] + "' alt='এই ফাইলটি লোড করা যাচ্ছেনা' height='100px' width='100px'/><br/><a href= 'http://localhost:8080/DMLC__Digital_Diary_/Uplopded_file/"+scanFile[i]+"' target ='_blank' >ডাউনলোড করুন</a></td>"
+                        + "<td><img src='../Uploaded_file/" + scanFile[i] + "' alt='এই ফাইলটি লোড করা যাচ্ছেনা' height='100px' width='100px'/>"
+                        + "<center><button class='btn btn-secondary' type='button' data-dismiss='modal'>"
+                        + "<a href= 'http://localhost:8080/DMLC__Digital_Diary_/Uploaded_file/" + scanFile[i] + "' target ='_blank' class='btn btn-primary open-spceLetterDialog'>ডাউনলোড</a>"
+                        + "</button></center>"
                         + "<td>"
                         + "<button class='btn btn-secondary' type='button' data-dismiss='modal'>"
                         + "<a data-toggle='modal' data-documentid='" + documentId[i] + "' data-scanfile='" + scanFile[i] + "' class='btn btn-primary open-spceDialog-comment' href='#addSpecComment' >মন্তব্য করুন</a>"
@@ -129,7 +132,7 @@ public class AllNewWorkEmp extends HttpServlet {
                         + "<a data-toggle='modal' data-forwardingid='" + forwardingId[i] + "' data-letterid='" + letterId[i] + "' data-documentid='" + documentId[i] + "' data-currentstatus='" + currentStatus[i] + "' data-depoforigin='" + depOfOrigin[i] + "' data-requestid='" + requestId[i] + "' data-subjectofletter='" + subjectOfLetter[i] + "' data-enddate='" + endDate[i] + "' data-shortdesc='" + shortDesc[i] + "' data-prioritys='" + prioritys + "' data-scanfile='" + scanFile[i] + "' class='btn btn-primary open-spceDialog' href='#addSpec' >পরবর্তী ধাপে পাঠান</a>"
                         + "</button>        "
                         + "<button class='btn btn-secondary' type='button' data-dismiss='modal'>"
-                        + "<a data-toggle='modal' data-letterid='"+letterId[i]+"' data-forwardingid='" + forwardingId[i] + "' data-forwardedtoemployeeusername='"+forwardedToEmployeeUsername[i]+"' data-acknowledgedbyemployeeusername='"+acknowledgedByEmployeeUsername[i]+"' data-forwardedtoemployeeid='"+forwardedToEmployeeId[i]+"' data-acknowledgedbyemployeeid='"+acknowledgedByEmployeeId[i]+"' data-documentid='" + documentId[i] + "' data-scanfile='" + scanFile[i] + "' class='btn btn-primary open-spceDialog-return' href='#addSpecReturn' >ফেরত পাঠান</a>"
+                        + "<a data-toggle='modal' data-letterid='" + letterId[i] + "' data-forwardingid='" + forwardingId[i] + "' data-forwardedtoemployeeusername='" + forwardedToEmployeeUsername[i] + "' data-acknowledgedbyemployeeusername='" + acknowledgedByEmployeeUsername[i] + "' data-forwardedtoemployeeid='" + forwardedToEmployeeId[i] + "' data-acknowledgedbyemployeeid='" + acknowledgedByEmployeeId[i] + "' data-documentid='" + documentId[i] + "' data-scanfile='" + scanFile[i] + "' class='btn btn-primary open-spceDialog-return' href='#addSpecReturn' >ফেরত পাঠান</a>"
                         + "</button>"
                         + "</td>"
                         + "</tr>");

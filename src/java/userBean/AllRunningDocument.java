@@ -89,7 +89,6 @@ public class AllRunningDocument extends HttpServlet {
                         + "<td>" + (i + 1) + "</td>"
                         + "<td>" + receivingDate[i] + "</td>"
                         + "<td>" + depOfOrigin[i] + "</td>"
-                        + "<td>" + requestId[i] + "</td>"
                         + "<td>" + subjectOfLetter[i] + "</td>"
                         + "<td>" + shortDesc[i] + "</td>"
                         + "<td><img src='../Uploaded_file/" + scanFile[i] + "' alt='এই ফাইলটি লোড করা যাচ্ছেনা' height='100px' width='100px'/></td>"
