@@ -14,35 +14,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
         <title>নতুন চিঠি সমূহ</title>
-        <!-- Bootstrap core CSS-->
-        <link href="../allStyles/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Custom fonts for this template-->
-        <link href="../allStyles/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Page level plugin CSS-->
-        <link href="../allStyles/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css"/>
-        <!-- Custom styles for this template-->
-        <link href="../allStyles/css/sb-admin.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Bootstrap core JavaScript-->
-        <script src="../allStyles/vendor/jquery/jquery.min.js" type="text/javascript"></script>
-        <script src="../allStyles/vendor/popper/popper.min.js" type="text/javascript"></script>
-        <script src="../allStyles/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="../allStyles/vendor/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
-        <!-- Page level plugin JavaScript-->
-
-        <script src="../allStyles/vendor/datatables/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="../allStyles/vendor/datatables/dataTables.bootstrap4.js" type="text/javascript"></script>
-        <!-- Custom scripts for all pages-->
-        <script src="../allStyles/js/sb-admin.min.js" type="text/javascript"></script>
-        <!-- Custom scripts for this page-->
-        <script src="../allStyles/js/sb-admin-datatables.min.js" type="text/javascript"></script>
-
+        <%@include file="../header.jsp" %>
     </head>
 
     <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -51,7 +24,7 @@
                 response.sendRedirect("../login.jsp");
             } else {%>
 
-        <%@include file="header.jsp" %>
+        <%@include file="navbar.jsp" %>
 
         <!--Body Part-->
         <div class="content-wrapper">
@@ -101,8 +74,6 @@
                 </table>
             </div>
 
-
-
             <!--letter Edit Dialog-->
             <div class="modal fade" id="addLetter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -119,11 +90,7 @@
                             <div class="card-body">
                                 <form action="../AddReceivesDocument" accept-charset="UTF-8" method="post" role="form" class="form-horizontal">
                                     <div class="form-group">
-                                        <label for="s" class="col-sm-4 control-label">বর্তমান অবস্থা</label>
-                                        <input  type="text" id="s" name="s" class="form-control" value="" readonly/>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="subjectOfLetter" class="col-sm-4 control-label">পত্রের বিষয়</label>
+                                        <label for="subjectOfLetter" class="control-label">পত্রের বিষয়</label>
                                         <input  type="text" id="subjectOfLetter" name="subjectOfLetter" class="form-control" value="" readonly/>
                                     </div>
                                     <div class="form-group">
@@ -226,7 +193,7 @@
             </div>
         </div>
 
-        <%@include file="footer.jsp" %>
+        <%@include file="../footer.jsp" %>
         <%}%> 
         <script>
             setTimeout(function () {

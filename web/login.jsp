@@ -14,24 +14,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>DLMC(Digital Diary)</title>
-        <!-- Bootstrap core CSS-->
-        <link href="allStyles/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Custom fonts for this template-->
-        <link href="allStyles/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-        <!-- Custom styles for this template-->
-        <link href="allStyles/css/sb-admin.css" rel="stylesheet" type="text/css"/>
-        <!-- Bootstrap core JavaScript-->
-        <script src="allStyles/vendor/jquery/jquery.min.js" type="text/javascript"></script>
-        <script src="allStyles/vendor/popper/popper.min.js" type="text/javascript"></script>
-        <script src="allStyles/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- Core plugin JavaScript-->
-        <script src="allStyles/vendor/jquery-easing/jquery.easing.min.js" type="text/javascript"></script>
+        <title>DLMC প্রবেশ</title>
+        <%@include file="header.jsp" %>
     </head>
 
     <body class="bg-dark">
@@ -57,7 +41,7 @@
                     <form role="form" role="form" action="LoginBean" method="post" class="form-horizontal">
                         <fieldset>
                             <div class="form-group">
-                                <label for="username" class="control-label">ইউজারনেম</label>
+                                <label for="username" class="control-label">উপাধি (বিভাগ)</label>
                                 <select class="form-control" name="username" id="username" required>
                                     <option value="">কর্মচারী নির্বাচন করুন</option>
                                     <%

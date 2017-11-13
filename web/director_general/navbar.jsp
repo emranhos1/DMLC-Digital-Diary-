@@ -2,7 +2,7 @@
 
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a class="navbar-brand" href="#">Web Admin</a>
+    <a class="navbar-brand" href="#">মহাপরিচালক</a>
 
     <!--Navigation Side bar-->
     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -14,31 +14,20 @@
                 </a>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseOrganogram" data-parent="#exampleAccordion">
-                    <i class="fa fa-fw fa-file"></i>
-                    <span class="nav-link-text">অর্গানোগ্রাম</span>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseDocument" data-parent="#exampleAccordion">
+                    <i class="fa fa-newspaper-o"></i>
+                    <span class="nav-link-text">চিঠি সমূহ</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="collapseOrganogram">
+                <ul class="sidenav-second-level collapse" id="collapseDocument">
                     <li>
-                        <a href="addOrganogram.jsp"><i class="fa fa-users fa-fw"></i> নতুন অর্গানোগ্রাম</a>
+                        <a href="allNewDocument.jsp"><i class="fa fa-newspaper-o fa-fw"></i>নতুন চিঠি সমূহ</a>
                     </li>
                     <li>
-                        <a href="allOrganogram.jsp"><i class="fa fa-users fa-fw"></i> সকল অর্গানোগ্রাম</a>
-                    </li>                            
-                </ul>
-            </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Menu Levels">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseEmployee" data-parent="#exampleAccordion">
-                    <i class="fa fa-fw fa-sitemap"></i>
-                    <span class="nav-link-text">কর্মচারী</span>
-                </a>
-                <ul class="sidenav-second-level collapse" id="collapseEmployee">
-                    <li>
-                        <a href="addEmployee.jsp"><i class="fa fa-user fa-fw"></i> নতুন কর্মচারী</a>
+                        <a href="runningDocument.jsp"><i class="fa fa-newspaper-o fa-fw"></i>চলমান চিঠি সমূহ</a>
                     </li>
                     <li>
-                        <a href="allEmployee.jsp"><i class="fa fa-user fa-fw"></i> সকল কর্মচারী</a>
+                        <a href="endDocument.jsp"><i class="fa fa-newspaper-o fa-fw"></i>নিস্পত্তিক্রিত চিঠি সমূহ</a>
                     </li>
                 </ul>
             </li>
@@ -53,7 +42,7 @@
                     </li>
                     <li class="divider"></li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                        <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
                             <i class="fa fa-fw fa-sign-out"></i>প্রস্থান</a>
                     </li>
                 </ul>
@@ -82,7 +71,7 @@
                 </form>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                <a class="nav-link" data-toggle="modal" data-target="#logoutModal">
                     <i class="fa fa-fw fa-sign-out"></i>প্রস্থান</a>
             </li>
         </ul>
